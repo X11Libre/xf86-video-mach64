@@ -45,12 +45,6 @@ endif
 
 AM_CFLAGS = @XORG_CFLAGS@ @DRI_CFLAGS@
 
-ati_drv_la_LTLIBRARIES = ati_drv.la
-ati_drv_la_LDFLAGS = -module -avoid-version
-ati_drv_ladir = @moduledir@/drivers
-ati_drv_la_SOURCES = \
-	ati.c atimodule.c
-
 mach64_drv_la_LTLIBRARIES = mach64_drv.la
 mach64_drv_la_LDFLAGS = -module -avoid-version
 mach64_drv_ladir = @moduledir@/drivers
@@ -112,7 +106,6 @@ EXTRA_DIST = \
 	atituner.h \
 	atiutil.h \
 	ativalid.h \
-	ativersion.h \
 	ativga.h \
 	ativgaio.h \
 	atividmem.h \
