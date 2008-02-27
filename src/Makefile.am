@@ -28,7 +28,6 @@
 
 if DRI
 ATIMISC_DRI_SRCS = atidri.c
-R128_DRI_SRCS = r128_dri.c
 endif
 
 if ATIMISC_CPIO
@@ -57,13 +56,6 @@ mach64_drv_la_SOURCES = \
 	atiprint.c atirgb514.c atiscreen.c atituner.c atiutil.c ativalid.c \
 	atiload.c atimisc.c atimach64probe.c $(ATIMISC_CPIO_SOURCES) \
 	$(ATIMISC_DGA_SOURCES) $(ATIMISC_DRI_SRCS) $(ATIMISC_EXA_SOURCES)
-
-r128_drv_la_LTLIBRARIES = r128_drv.la
-r128_drv_la_LDFLAGS = -module -avoid-version
-r128_drv_ladir = @moduledir@/drivers
-r128_drv_la_SOURCES = \
-	r128_accel.c r128_cursor.c r128_dga.c r128_driver.c \
-	r128_video.c r128_misc.c r128_probe.c $(R128_DRI_SRCS)
 
 EXTRA_DIST = \
 	atimach64render.c \
@@ -115,12 +107,4 @@ EXTRA_DIST = \
 	mach64_common.h \
 	mach64_dri.h \
 	mach64_sarea.h \
-	r128_common.h \
-	r128_dri.h \
-	r128_dripriv.h \
-	r128.h \
-	r128_probe.h \
-	r128_reg.h \
-	r128_sarea.h \
-	r128_version.h \
 	atipcirename.h

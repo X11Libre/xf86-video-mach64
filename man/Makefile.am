@@ -27,11 +27,11 @@
 
 drivermandir = $(DRIVER_MAN_DIR)
 
-driverman_PRE = r128.man
+driverman_PRE =
 
 driverman_DATA = $(driverman_PRE:man=@DRIVER_MAN_SUFFIX@)
 
-EXTRA_DIST = r128.man
+EXTRA_DIST =
 
 CLEANFILES = $(driverman_DATA)
 
