@@ -21,10 +21,10 @@
 # Process this file with autoconf to produce a configure script
 
 AC_PREREQ(2.57)
-AC_INIT([xf86-video-ati],
+AC_INIT([xf86-video-mach64],
         6.8.0,
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
-        xf86-video-ati)
+        xf86-video-mach64)
 
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER([config.h])
@@ -214,7 +214,7 @@ AC_SUBST([XORG_CFLAGS])
 AC_SUBST([DRI_CFLAGS])
 AC_SUBST([moduledir])
 
-DRIVER_NAME=ati
+DRIVER_NAME=mach64
 AC_SUBST([DRIVER_NAME])
 
 XORG_MANPAGE_SECTIONS
