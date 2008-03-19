@@ -39,4 +39,16 @@ extern Bool ATIMach64AccelInit(ScreenPtr);
 #endif
 extern void ATIMach64Sync(ScrnInfoPtr);
 
+/* atimach64accel.c */
+extern void ATIMach64ValidateClip(ATIPtr, int, int, int, int);
+
+#ifdef USE_EXA
+/* atimach64render.c */
+extern Bool Mach64CheckComposite(int, PicturePtr, PicturePtr, PicturePtr);
+extern Bool Mach64PrepareComposite(int, PicturePtr, PicturePtr, PicturePtr,
+				   PixmapPtr, PixmapPtr, PixmapPtr);
+extern void Mach64Composite(PixmapPtr, int, int, int, int, int, int, int, int);
+extern void Mach64DoneComposite(PixmapPtr);
+#endif
+
 #endif /* ___ATIMACH64ACCEL_H___ */
