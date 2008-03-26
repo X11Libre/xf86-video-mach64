@@ -146,7 +146,12 @@ ATIUnmapMMIO
 #ifndef XSERVER_LIBPCIACCESS
         xf86UnMapVidMem(iScreen, pATI->pMMIO, getpagesize());
 #else
-        pci_device_unmap_range(pATI->PCIInfo, pATI->pMMIO, getpagesize());
+        unsigned long size;
+
+        size = PCI_REGION_SIZE(pATI->PCIInfo, 2);
+        if (!size || size > getpagesize())
+                size = getpagesize();
+        pci_device_unmap_range(pATI->PCIInfo, pATI->pMMIO, size);
 #endif
     }
 
@@ -340,10 +345,15 @@ ATIMapApertures
 
         int mode = PCI_DEV_MAP_FLAG_WRITABLE;
 
-        int err = pci_device_map_range(pVideo,
-                                       MMIOBase,
-                                       PageSize,
-                                       mode, &pATI->pMMIO);
+        int err;
+        int size;
+
+        size = PCI_REGION_SIZE(pVideo, 2);
+        if (!size || size > PageSize)
+               size = PageSize;
+
+	err = pci_device_map_range(pVideo, MMIOBase,
+                                   size, mode, &pATI->pMMIO);
 
         if (err)
         {
