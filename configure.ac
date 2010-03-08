@@ -65,7 +65,6 @@ AC_ARG_ENABLE(exa,
               [EXA=yes])
 
 # Checks for extensions
-XORG_DRIVER_CHECK_EXT(XINERAMA, xineramaproto)
 XORG_DRIVER_CHECK_EXT(RANDR, randrproto)
 XORG_DRIVER_CHECK_EXT(RENDER, renderproto)
 XORG_DRIVER_CHECK_EXT(XV, videoproto)
