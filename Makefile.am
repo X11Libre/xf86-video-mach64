@@ -21,13 +21,6 @@
 SUBDIRS = src man
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
-if BUILD_LINUXDOC
-README.ati: README.ati.sgml
-	$(MAKE_TEXT) README.ati.sgml && mv README.ati.txt README.ati
-endif
-
-EXTRA_DIST = README.ati README.ati.sgml
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:

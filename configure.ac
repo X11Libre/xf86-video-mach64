@@ -222,8 +222,6 @@ AC_SUBST([moduledir])
 DRIVER_NAME=mach64
 AC_SUBST([DRIVER_NAME])
 
-XORG_CHECK_LINUXDOC
-
 AC_MSG_NOTICE(
 [Please change the Driver line in xorg.conf from "ati" to "mach64"]
 [ or install the ati wrapper as well:]
