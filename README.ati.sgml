@@ -1,5 +1,5 @@
 <!DOCTYPE linuxdoc PUBLIC "-//Xorg//DTD linuxdoc//EN"[
-<!ENTITY % defs SYSTEM "defs.ent"> %defs;
+<!ENTITY % defs SYSTEM "X11/defs.ent"> %defs;
 ]>
 
 <article>
@@ -9,15 +9,6 @@
 <title>ATI Adapters README file
 <author>Marc Aurele La France
 <date>2002 February 12
-
-
-
-
-
-<ident>
-$Id$ 
-Based on XFree86: xc/programs/Xserver/hw/xfree86/doc/sgml/ati.sgml,v 3.42 2003/01/20 03:43:07 dawes Exp 
-</ident>
 
 <abstract>
 This is the README for the XAA ATI driver included in this release.
@@ -62,7 +53,7 @@ disable itself to allow other drivers to examine the system.<p>
 Note that I am currently considering removing the driver's support for generic
 VGA.
 If you have any concerns about this, please contact me at
-<email>tsi@xfree86.org</email>.
+<url url="mailto:tsi@xfree86.org">.
 -->
 <sect>A note on acceleration<p>
 The meaning of ``acceleration'', as used in this document, needs to be
@@ -604,7 +595,7 @@ name="https://bugs.freedesktop.org/enter_bug.cgi?product=xorg"
 url="https://bugs.freedesktop.org/enter_bug.cgi?product=xorg">
 can also prove useful in resolving problems.<p>
 If you are still experiencing problems, you can send <it>non-HTMLised</it>
-e-mail to <email>xorg@lists.fredesktop.org</email>.
+e-mail to <url url="mailto:xorg@lists.fredesktop.org">.
 Please be as specific as possible when describing the problem(s), and include
 an <it>unedited</it> copy of the server's log and the xorg.conf file used.<p>
 <sect>Driver history<p>
