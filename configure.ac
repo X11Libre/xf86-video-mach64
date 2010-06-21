@@ -68,7 +68,6 @@ AC_ARG_ENABLE(exa,
 XORG_DRIVER_CHECK_EXT(RANDR, randrproto)
 XORG_DRIVER_CHECK_EXT(RENDER, renderproto)
 XORG_DRIVER_CHECK_EXT(XV, videoproto)
-XORG_DRIVER_CHECK_EXT(XF86MISC, xf86miscproto)
 XORG_DRIVER_CHECK_EXT(DPMSExtension, xextproto)
 
 # Checks for pkg-config packages
