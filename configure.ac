@@ -222,8 +222,9 @@ AC_MSG_NOTICE(
 [    git://anongit.freedesktop.org/git/xorg/driver/xf86-video-ati]
 )
 
-AC_OUTPUT([
-	Makefile
-	src/Makefile
-	man/Makefile
+AC_CONFIG_FILES([
+                Makefile
+                src/Makefile
+                man/Makefile
 ])
+AC_OUTPUT
