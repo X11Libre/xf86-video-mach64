@@ -628,7 +628,6 @@ ATICloseScreen
 {
     ScrnInfoPtr pScreenInfo = xf86Screens[iScreen];
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
-    Bool        Closed      = TRUE;
 
 #ifdef XF86DRI_DEVEL
 
@@ -658,21 +657,13 @@ ATICloseScreen
         pATI->pXAAInfo = NULL;
     }
 #endif
-
-    if ((pScreen->CloseScreen = pATI->CloseScreen))
-    {
-        pATI->CloseScreen = NULL;
-        Closed = (*pScreen->CloseScreen)(iScreen, pScreen);
-    }
-
-    pATI->Closeable = FALSE;
-
     if (pATI->pCursorInfo)
     {
         xf86DestroyCursorInfoRec(pATI->pCursorInfo);
         pATI->pCursorInfo = NULL;
     }
 
+    pATI->Closeable = FALSE;
     ATILeaveGraphics(pScreenInfo, pATI);
 
 #ifdef USE_XAA
@@ -688,5 +679,6 @@ ATICloseScreen
     pATI->pShadow = NULL;
     pScreenInfo->pScreen = NULL;
 
-    return Closed;
+    pScreen->CloseScreen = pATI->CloseScreen;
+    return (*pScreen->CloseScreen)(iScreen, pScreen);
 }

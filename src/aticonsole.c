@@ -784,17 +784,10 @@ ATIFreeScreen
     int flags
 )
 {
-    ScreenPtr   pScreen     = screenInfo.screens[iScreen];
     ScrnInfoPtr pScreenInfo = xf86Screens[iScreen];
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
 
-    if (pATI->Closeable || (serverGeneration > 1))
-        ATII2CFreeScreen(iScreen);
-
-    if (pATI->Closeable)
-        (void)(*pScreen->CloseScreen)(iScreen, pScreen);
-
-    ATILeaveGraphics(pScreenInfo, pATI);
+    ATII2CFreeScreen(iScreen);
 
 #ifndef AVOID_CPIO
 
