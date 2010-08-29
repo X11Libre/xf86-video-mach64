@@ -1552,6 +1552,9 @@ ATICloseXVideo
     ATIPtr      pATI
 )
 {
+    if (!pATI->Block1Base)
+        return;
+
     ATIMach64StopVideo(pScreenInfo, pATI, TRUE);
 
     REGION_UNINIT(pScreen, &pATI->VideoClip);
