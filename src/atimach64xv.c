@@ -1467,8 +1467,8 @@ ATIMach64XVInitialiseAdaptor
     if (pppAdaptor)
         *pppAdaptor = ppAdaptor;
     else {
-        xfree(ppAdaptor[0]);
-        xfree(ppAdaptor);
+        free(ppAdaptor[0]);
+        free(ppAdaptor);
     }
 
     return 1;
@@ -1505,9 +1505,9 @@ ATIXVFreeAdaptorInfo
         return;
 
     while (nAdaptor > 0)
-        xfree(ppAdaptor[--nAdaptor]);
+        free(ppAdaptor[--nAdaptor]);
 
-    xfree(ppAdaptor);
+    free(ppAdaptor);
 }
 
 /*

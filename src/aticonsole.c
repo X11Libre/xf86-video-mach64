@@ -799,19 +799,19 @@ ATIFreeScreen
 
 #ifndef AVOID_CPIO
 
-    xfree(pATI->OldHW.frame_buffer);
-    xfree(pATI->NewHW.frame_buffer);
+    free(pATI->OldHW.frame_buffer);
+    free(pATI->NewHW.frame_buffer);
 
 #endif /* AVOID_CPIO */
 
-    xfree(pATI->pShadow);
+    free(pATI->pShadow);
 
 #ifndef AVOID_DGA
 
-    xfree(pATI->pDGAMode);
+    free(pATI->pDGAMode);
 
 #endif /* AVOID_DGA */
 
-    xfree(pATI);
+    free(pATI);
     pScreenInfo->driverPrivate = NULL;
 }

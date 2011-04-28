@@ -388,7 +388,7 @@ ATIScreenInit
     {
         pATI->FBBytesPerPixel = pATI->bitsPerPixel >> 3;
         pATI->FBPitch = PixmapBytePad(pATI->displayWidth, pATI->depth);
-        if ((pATI->pShadow = xalloc(pATI->FBPitch * pScreenInfo->virtualY)))
+        if ((pATI->pShadow = malloc(pATI->FBPitch * pScreenInfo->virtualY)))
         {
             pFB = pATI->pShadow;
         }
@@ -646,7 +646,7 @@ ATICloseScreen
     if (pATI->pExa)
     {
         exaDriverFini(pScreen);
-        xfree(pATI->pExa);
+        free(pATI->pExa);
         pATI->pExa = NULL;
     }
 #endif
@@ -669,13 +669,13 @@ ATICloseScreen
 #ifdef USE_XAA
     if (!pATI->useEXA)
     {
-        xfree(pATI->ExpansionBitmapScanlinePtr[1]);
+        free(pATI->ExpansionBitmapScanlinePtr[1]);
         pATI->ExpansionBitmapScanlinePtr[0] = NULL;
         pATI->ExpansionBitmapScanlinePtr[1] = NULL;
     }
 #endif
 
-    xfree(pATI->pShadow);
+    free(pATI->pShadow);
     pATI->pShadow = NULL;
     pScreenInfo->pScreen = NULL;
 
