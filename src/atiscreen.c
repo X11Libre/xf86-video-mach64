@@ -532,7 +532,6 @@ ATIScreenInit(SCREEN_INIT_ARGS_DECL)
 #endif /* AVOID_DGA */
 
     /* Initialise backing store */
-    miInitializeBackingStore(pScreen);
     xf86SetBackingStore(pScreen);
 
     /* Initialise cursor */
