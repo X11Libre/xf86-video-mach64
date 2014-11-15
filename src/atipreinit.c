@@ -1079,12 +1079,14 @@ ATIPreInit
         }
     }
 
+#ifndef XSERVER_LIBPCIACCESS
     if (!xf86LinearVidMem())
     {
         xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR,
             "A linear aperture is not available.\n");
         goto bail;
     }
+#endif
 
     /*
      * Set colour weights.
