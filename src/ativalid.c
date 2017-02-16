@@ -62,11 +62,11 @@ ATIValidMode
             /* CRTC_H_TOTAL is one bit narrower */
             maxHValue >>= 1;
         }
-        if (pMode->HDisplay > maxHValue)
+        if (pMode->HTotal > maxHValue)
             return MODE_BAD_HVALUE;
 
         maxVValue = MaxBits(CRTC_V_TOTAL) + 1;
-        if (pMode->VDisplay > maxVValue)
+        if (pMode->VTotal > maxVValue)
             return MODE_BAD_VVALUE;
     }
 
