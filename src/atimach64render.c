@@ -701,8 +701,8 @@ Mach64PrepareComposite
             break;
     }
     if (i == MACH64_NR_TEX_FORMATS)
-        MACH64_FALLBACK(("Unsupported picture format 0x%x\n",
-                        (int)pPict->format));
+        MACH64_FALLBACK(("Unsupported dst format 0x%x\n",
+                        (int)pDstPicture->format));
     dstFormat = Mach64TexFormats[i].dstFormat;
 
     m3d->dp_pix_width = SetBits(dstFormat, DP_DST_PIX_WIDTH) |
