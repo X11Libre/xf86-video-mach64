@@ -77,8 +77,8 @@
  *
  * A texture unit combines the fragment color (VERTEX_?_ARGB) coming in from
  * triangle rasterization with the texel from the texture according to the
- * texture environment (TEX_LIGHT_FCN_). "1x1 R" textures may come in as frag-
- * ment colors, eliminating the need for multitexturing in all interesting
+ * texture environment (TEX_LIGHT_FCN_). "1x1 R" textures may come in as 
+ * fragment colors, eliminating the need for multitexturing in all interesting
  * cases (via also uses this optimization).
  *
  * Texture registers are saved/restored and cached (see atimach64.c). TEX_CNTL
@@ -88,7 +88,7 @@
  *
  * Vertex registers are not saved/restored. This shouldn't be a problem though
  * either for DRI or VT switch because vertex registers are set and used within
- * a signle acceleration hook. Synchronization between the DDX and DRI is based
+ * a single acceleration hook. Synchronization between the DDX and DRI is based
  * on calling ATIDRISync() at the beginning of each DDX acceleration hook,
  * which suggests the assumption that individual acceleration hooks are not
  * interrupted.

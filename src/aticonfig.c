@@ -442,7 +442,7 @@ ATIProcessOptions
         pATI->OptionDMAMode = MACH64_MODE_MMIO;
     else {
         xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
-		   "Unkown dma_mode: '%s'\n", DMAMode);
+		   "Unknown dma_mode: '%s'\n", DMAMode);
 	xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING, 
 		   "Valid dma_mode options are: 'async','sync','mmio'\n");
         xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING, 
