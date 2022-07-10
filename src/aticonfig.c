@@ -311,6 +311,10 @@ ATIProcessOptions
 
     (void)memcpy(PublicOption, ATIPublicOptions, ATIPublicOptionSize);
 
+#if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 25
+# define boolean bool
+#endif
+    
 #   define ProbeSparse   PublicOption[ATI_OPTION_PROBE_SPARSE].value.boolean
 #   define Accel         PublicOption[ATI_OPTION_ACCEL].value.boolean
 #   define BIOSDisplay   PrivateOption[ATI_OPTION_BIOS_DISPLAY].value.boolean
