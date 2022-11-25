@@ -49,8 +49,8 @@ ATIVGAPreInit
 
     /* Initialise sequencer register values */
     pATIHW->seq[0] = 0x03U;
-        pATIHW->seq[2] = 0x0FU;
-        pATIHW->seq[4] = 0x0AU;
+    pATIHW->seq[2] = 0x0FU;
+    pATIHW->seq[4] = 0x0AU;
 
     /* Initialise CRTC register values */
     if (((pATI->Chip >= ATI_CHIP_264CT)))
@@ -58,7 +58,7 @@ ATIVGAPreInit
     else
         pATIHW->crt[19] = pATI->displayWidth >> 4;
 
-        pATIHW->crt[23] = 0xE3U;
+    pATIHW->crt[23] = 0xE3U;
     pATIHW->crt[24] = 0xFFU;
 
     /* Initialise attribute controller register values */
@@ -66,7 +66,7 @@ ATIVGAPreInit
         for (Index = 0;  Index < 16;  Index++)
             pATIHW->attr[Index] = Index;
 
-            pATIHW->attr[16] = 0x01U;
+        pATIHW->attr[16] = 0x01U;
         pATIHW->attr[17] = 0xFFU;
     }
     pATIHW->attr[18] = 0x0FU;

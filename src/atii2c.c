@@ -315,7 +315,7 @@ ATICreateI2CBusRec
 (
     int    iScreen,
     ATIPtr pATI,
-    char   *BusName
+    const char *BusName
 )
 {
     I2CBusPtr pI2CBus;

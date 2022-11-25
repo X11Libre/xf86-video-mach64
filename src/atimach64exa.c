@@ -74,16 +74,6 @@
 #ifdef USE_EXA
 extern CARD8 ATIMach64ALU[];
 
-extern void
-ATIMach64ValidateClip
-(
-    ATIPtr pATI,
-    int sc_left,
-    int sc_right,
-    int sc_top,
-    int sc_bottom
-);
-
 #if 0
 #define MACH64_TRACE(x)				\
 do {						\
