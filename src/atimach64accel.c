@@ -67,13 +67,15 @@
 
 /* Used to test MMIO cache integrity in ATIMach64Sync() */
 #define TestRegisterCaching(_Register)                   \
+  do {                                                   \
     if (RegisterIsCached(_Register) &&                   \
         (CacheSlot(_Register) != inm(_Register)))        \
     {                                                    \
         UncacheRegister(_Register);                      \
         xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,    \
             #_Register " MMIO write cache disabled!\n"); \
-    }
+    }                                                    \
+  } while (0)
 
 /*
  * X-to-Mach64 mix translation table.
