@@ -80,16 +80,14 @@ ATIRefreshArea
 )
 {
     ATIPtr  pATI = ATIPTR(pScreenInfo);
-    pointer pSrc, pDst;
-    int     offset, w, h;
 
     while (nBox-- > 0)
     {
-        w = (pBox->x2 - pBox->x1) * pATI->AdjustDepth;
-        h = pBox->y2 - pBox->y1;
-        offset = (pBox->y1 * pATI->FBPitch) + (pBox->x1 * pATI->AdjustDepth);
-        pSrc = (char *)pATI->pShadow + offset;
-        pDst = (char *)pATI->pMemory + offset;
+        int w = (pBox->x2 - pBox->x1) * pATI->AdjustDepth;
+        int h = pBox->y2 - pBox->y1;
+        int offset = (pBox->y1 * pATI->FBPitch) + (pBox->x1 * pATI->AdjustDepth);
+        pointer pSrc = (char *)pATI->pShadow + offset;
+        pointer pDst = (char *)pATI->pMemory + offset;
 
         while (h-- > 0)
         {
@@ -130,17 +128,15 @@ ATIMach64SetupMemXAA_NoDRI
 {
     ATIPtr       pATI        = ATIPTR(pScreenInfo);
 
-    int maxScanlines = ATIMach64MaxY;
-    int maxPixelArea, PixelArea;
-
     {
         /*
          * Note:  If PixelArea exceeds the engine's maximum, the excess is
          *        never used, even though it would be useful for such things
          *        as XVideo buffers.
          */
-        maxPixelArea = maxScanlines * pScreenInfo->displayWidth;
-        PixelArea = pScreenInfo->videoRam * 1024 * 8 / pATI->bitsPerPixel;
+        int maxScanlines = ATIMach64MaxY;
+        int maxPixelArea = maxScanlines * pScreenInfo->displayWidth;
+        int PixelArea = pScreenInfo->videoRam * 1024 * 8 / pATI->bitsPerPixel;
         if (PixelArea > maxPixelArea)
             PixelArea = maxPixelArea;
         xf86InitFBManagerArea(pScreen, PixelArea, 2);

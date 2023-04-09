@@ -45,8 +45,6 @@ ATIVGAPreInit
     ATIHWPtr    pATIHW
 )
 {
-    int Index;
-
     /* Initialise sequencer register values */
     pATIHW->seq[0] = 0x03U;
     pATIHW->seq[2] = 0x0FU;
@@ -63,7 +61,7 @@ ATIVGAPreInit
 
     /* Initialise attribute controller register values */
     {
-        for (Index = 0;  Index < 16;  Index++)
+        for (int Index = 0;  Index < 16;  Index++)
             pATIHW->attr[Index] = Index;
 
         pATIHW->attr[16] = 0x01U;

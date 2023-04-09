@@ -403,10 +403,9 @@ ATIProcessOptions
 	xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
                 "TV Out not supported for this chip.\n");
     } else {
-	ATITVStandard std;
 	pATI->OptionTvOut = TvOut;
 	pATI->OptionTvStd = ATI_TV_STD_INVALID;
-	for (std = 0; std < ATI_TV_STDS_MAX_VALID; std++) {
+	for (ATITVStandard std = 0; std < ATI_TV_STDS_MAX_VALID; std++) {
 	    if (std != ATI_TV_STD_RESERVED1 && std != ATI_TV_STD_RESERVED2) {
 		if (strncasecmp(TvStd, ATITVStandardNames[std], ATI_TV_STDS_NAME_MAXLEN)==0) {
 		    pATI->OptionTvStd = std;

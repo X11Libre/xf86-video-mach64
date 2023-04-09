@@ -70,10 +70,9 @@ BitsSet
     unsigned long data
 )
 {
-    unsigned long mask = 1;
     int           set  = 0;
 
-    for (;  mask;  mask <<= 1)
+    for (unsigned long mask = 1;  mask;  mask <<= 1)
         if (data & mask)
             set++;
 

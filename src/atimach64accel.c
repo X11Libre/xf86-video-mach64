@@ -886,7 +886,6 @@ ATIMach64SubsequentColorExpandScanline
     ATIPtr          pATI         = ATIPTR(pScreenInfo);
     CARD32          *pBitmapData = pATI->ExpansionBitmapScanlinePtr[iBuffer];
     int             w            = pATI->ExpansionBitmapWidth;
-    int             nDWord;
 
     ATIDRISync(pScreenInfo);
 
@@ -896,7 +895,7 @@ ATIMach64SubsequentColorExpandScanline
          * Transfers are done in chunks of up to 64 bytes in length (32 on
          * earlier controllers).
          */
-        nDWord = w;
+        int nDWord = w;
         if (nDWord > pATI->nHostFIFOEntries)
             nDWord = pATI->nHostFIFOEntries;
 

@@ -1353,7 +1353,6 @@ ATIMach64XVInitialiseAdaptor
     ATIPtr              pATI       = ATIPTR(pScreenInfo);
     XF86VideoAdaptorPtr *ppAdaptor = NULL;
     XF86VideoAdaptorPtr pAdaptor;
-    int                 Index;
 
     XF86VideoEncodingPtr  enc = &(ATIMach64VideoEncoding[0]);
     XF86OffscreenImagePtr surf0 = &(ATIMach64Surface[0]);
@@ -1426,6 +1425,8 @@ ATIMach64XVInitialiseAdaptor
 
     if (ATIMach64XVAtomGeneration != serverGeneration)
     {
+        int                 Index;
+
         /* Refresh static data */
         ATIMach64XVAtomGeneration = serverGeneration;
 
