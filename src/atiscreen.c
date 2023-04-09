@@ -100,6 +100,7 @@ ATIRefreshArea
     }
 }
 
+#ifdef USE_XAA
 /*
  * ATIMinBits --
  *
@@ -118,7 +119,6 @@ ATIMinBits
     return bits;
 }
 
-#ifdef USE_XAA
 static Bool
 ATIMach64SetupMemXAA_NoDRI
 (

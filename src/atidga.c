@@ -167,6 +167,7 @@ ATIDGAGetViewport
     return 0;   /* There are never any pending requests */
 }
 
+#ifdef USE_XAA
 /*
  * ATIDGAFillRect --
  *
@@ -272,6 +273,7 @@ ATIDGABlitTransRect
         SET_SYNC_FLAG(pXAAInfo);
 #endif
 }
+#endif /* USE_XAA */
 
 /*
  * ATIDGAAddModes --
