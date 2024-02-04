@@ -1029,12 +1029,11 @@ Bool ATIDRIScreenInit( ScreenPtr pScreen )
    if (xf86LoaderCheckSymbol("DRICreatePCIBusID")) {
       pDRIInfo->busIdString = DRICreatePCIBusID(pATI->PCIInfo);
    } else {
-      pDRIInfo->busIdString = malloc( 64 );
-      sprintf( pDRIInfo->busIdString,
-	       "PCI:%d:%d:%d",
-	       PCI_DEV_BUS(pATI->PCIInfo),
-	       PCI_DEV_DEV(pATI->PCIInfo),
-	       PCI_DEV_FUNC(pATI->PCIInfo) );
+      XNFasprintf(&pDRIInfo->busIdString,
+                  "PCI:%d:%d:%d",
+                  PCI_DEV_BUS(pATI->PCIInfo),
+                  PCI_DEV_DEV(pATI->PCIInfo),
+                  PCI_DEV_FUNC(pATI->PCIInfo) );
    }
    pDRIInfo->ddxDriverMajorVersion = MACH64_VERSION_MAJOR;
    pDRIInfo->ddxDriverMinorVersion = MACH64_VERSION_MINOR;
