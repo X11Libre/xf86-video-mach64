@@ -426,6 +426,7 @@ ATIMach64I2CPreInit
                 break;
             }
             /* Otherwise, fall through to the older case */
+            /* FALLTHROUGH */
 
         case ATI_CHIP_264VT:
         case ATI_CHIP_264GT:
@@ -449,6 +450,7 @@ ATIMach64I2CPreInit
             if (ATITVAddOnProbe(pScreenInfo, pATI, pI2CBus))
                 break;
             /* Otherwise, fall back to ATI's first I2C implementation */
+            /* FALLTHROUGH */
 
         default:
             /*

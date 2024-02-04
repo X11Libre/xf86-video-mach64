@@ -1008,9 +1008,9 @@ ATIModeSet
                      Index++)
                     PutReg(CRTX(pATI->CPIO_VGABase), Index,
                         pATIHW->shadow_vga[Index]);
-                /* Fall through */
 
 #endif /* AVOID_CPIO */
+                /* Fall through */
 
             case ATI_CRTC_MACH64:
                 outr(CRTC_H_TOTAL_DISP, pATIHW->shadow_h_total_disp);

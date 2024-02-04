@@ -538,7 +538,7 @@ static Bool ATIDRISetAgpMode( ScreenPtr pScreen )
 
    mode &= ~AGP_MODE_MASK;
    switch ( pATIDRIServer->agpMode ) {
-   case 2:          mode |= AGP_MODE_2X;
+   case 2:          mode |= AGP_MODE_2X;	/* FALLTHROUGH */
    case 1: default: mode |= AGP_MODE_1X;
    }
 
