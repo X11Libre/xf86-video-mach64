@@ -63,7 +63,7 @@ static Bool
 Mach64GetRec(ScrnInfoPtr pScrn)
 {
     if (!pScrn->driverPrivate) {
-        pScrn->driverPrivate = xnfcalloc(sizeof(ATIRec), 1);
+        pScrn->driverPrivate = XNFcallocarray(sizeof(ATIRec), 1);
         memset(pScrn->driverPrivate, 0, sizeof(ATIRec));
     }
 
@@ -2302,7 +2302,7 @@ ATIPreInit
              * Add a mode to the end of the monitor's list for the panel's
              * native resolution.
              */
-            pMode = (DisplayModePtr)xnfcalloc(1, SizeOf(DisplayModeRec));
+            pMode = (DisplayModePtr)XNFcallocarray(1, SizeOf(DisplayModeRec));
             pMode->name = "Native panel mode";
             pMode->type = M_T_BUILTIN;
             pMode->Clock = pATI->LCDClock;

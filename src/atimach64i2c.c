@@ -296,7 +296,7 @@ ATITVAddOnProbe
     I2CBusPtr   pI2CBus
 )
 {
-    I2CDevPtr pI2CDev = xnfcalloc(1, SizeOf(I2CDevRec));
+    I2CDevPtr pI2CDev = XNFcallocarray(1, SizeOf(I2CDevRec));
 
     static const CARD8 ATITVAddOnAddresses[] = {0x70, 0x40, 0x78, 0x72, 0x42};
 

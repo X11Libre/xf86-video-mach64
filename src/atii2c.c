@@ -318,7 +318,7 @@ ATICreateI2CBusRec
 )
 {
     I2CBusPtr pI2CBus;
-    ATII2CPtr pATII2C = xnfcalloc(1, SizeOf(ATII2CRec));
+    ATII2CPtr pATII2C = XNFcallocarray(1, SizeOf(ATII2CRec));
 
     if (!(pI2CBus = xf86CreateI2CBusRec()))
     {

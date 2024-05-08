@@ -1063,7 +1063,7 @@ Bool ATIDRIScreenInit( ScreenPtr pScreen )
 	       (unsigned)(sizeof(XF86DRISAREARec) + sizeof(ATISAREAPrivRec)) );
    pDRIInfo->SAREASize = SAREA_MAX;
 
-   pATIDRI = (ATIDRIPtr) xnfcalloc( sizeof(ATIDRIRec), 1 );
+   pATIDRI = (ATIDRIPtr) XNFcallocarray( sizeof(ATIDRIRec), 1 );
    if ( !pATIDRI ) {
       DRIDestroyInfoRec( pATI->pDRIInfo );
       pATI->pDRIInfo = NULL;
@@ -1072,7 +1072,7 @@ Bool ATIDRIScreenInit( ScreenPtr pScreen )
       return FALSE;
    }
    pATIDRIServer = (ATIDRIServerInfoPtr)
-      xnfcalloc( sizeof(ATIDRIServerInfoRec), 1 );
+      XNFcallocarray( sizeof(ATIDRIServerInfoRec), 1 );
    if ( !pATIDRIServer ) {
       free( pATIDRI );
       DRIDestroyInfoRec( pATI->pDRIInfo );
