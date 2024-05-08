@@ -1034,7 +1034,7 @@ ATIMach64AccelInit
     pATI->ExpansionBitmapWidth =        /* DWord size in bits */
         ((pATI->displayWidth * pATI->XModifier) + 31) & ~31U;
     pATI->ExpansionBitmapScanlinePtr[1] =
-        (CARD32 *)xnfalloc((pATI->ExpansionBitmapWidth >> 3) + 63);
+        (CARD32 *)XNFalloc((pATI->ExpansionBitmapWidth >> 3) + 63);
     pATI->ExpansionBitmapScanlinePtr[0] =
         (pointer)(((unsigned long)pATI->ExpansionBitmapScanlinePtr[1] + 63) &
                   ~63UL);

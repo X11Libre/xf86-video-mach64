@@ -1370,7 +1370,7 @@ ATIMach64XVInitialiseAdaptor
     if (!(pAdaptor = xf86XVAllocateVideoAdaptorRec(pScreenInfo)))
         return 0;
 
-    ppAdaptor = xnfalloc(sizeof(pAdaptor));
+    ppAdaptor = XNFalloc(sizeof(pAdaptor));
     ppAdaptor[0] = pAdaptor;
 
     pAdaptor->nPorts = 1;

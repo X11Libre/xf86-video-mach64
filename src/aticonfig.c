@@ -262,7 +262,7 @@ ATIProcessOptions
     ATIPtr      pATI
 )
 {
-    OptionInfoPtr PublicOption = xnfalloc(ATIPublicOptionSize);
+    OptionInfoPtr PublicOption = XNFalloc(ATIPublicOptionSize);
     OptionInfoRec PrivateOption[] =
     {
         {                       /* ON:  Let BIOS change display(s) */
