@@ -52,9 +52,6 @@
 #include "atiadjust.h"
 
 #include "vbe.h"
-#if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 6
-#include "xf86RAC.h"
-#endif
 
 /*
  * FreeScreen handles the clean-up.
