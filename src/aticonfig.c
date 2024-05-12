@@ -494,7 +494,13 @@ ATIProcessOptions
 #endif /* USE_EXA */
         xf86DrvMsg(pScreenInfo->scrnIndex, from,
             "Using %s acceleration architecture\n",
-            pATI->useEXA ? "EXA" : "XAA");
+            pATI->useEXA ? "EXA" :
+#if defined(USE_XAA)
+                   "XAA"
+#else
+                   "no"
+#endif
+            );
 
 #if defined(USE_EXA)
         if (pATI->useEXA && pATI->Chip >= ATI_CHIP_264GTPRO)
