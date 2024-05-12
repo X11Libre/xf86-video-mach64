@@ -481,26 +481,11 @@ ATIProcessOptions
     {
         MessageType from = X_DEFAULT;
 #if defined(USE_EXA)
-#if defined(USE_XAA)
-        if (AccelMethod != NULL)
-        {
-            from = X_CONFIG;
-            if (xf86NameCmp(AccelMethod, "EXA") == 0)
-                pATI->useEXA = TRUE;
-        }
-#else /* USE_XAA */
         pATI->useEXA = TRUE;
-#endif /* !USE_XAA */
 #endif /* USE_EXA */
         xf86DrvMsg(pScreenInfo->scrnIndex, from,
             "Using %s acceleration architecture\n",
-            pATI->useEXA ? "EXA" :
-#if defined(USE_XAA)
-                   "XAA"
-#else
-                   "no"
-#endif
-            );
+            pATI->useEXA ? "EXA" : "no");
 
 #if defined(USE_EXA)
         if (pATI->useEXA && pATI->Chip >= ATI_CHIP_264GTPRO)
