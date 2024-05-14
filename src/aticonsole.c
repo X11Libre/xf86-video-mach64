@@ -681,9 +681,6 @@ ATIEnterVT(VT_FUNC_ARGS_DECL)
     ScreenPtr   pScreen     = pScreenInfo->pScreen;
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
     PixmapPtr   pScreenPixmap;
-#if (XORG_VERSION_CURRENT < XORG_VERSION_NUMERIC(1, 9, 99, 1, 0))
-    DevUnion    PixmapPrivate;
-#endif
     Bool        Entered;
 
     if (!ATIEnterGraphics(NULL, pScreenInfo, pATI))
@@ -709,23 +706,9 @@ ATIEnterVT(VT_FUNC_ARGS_DECL)
 
     pScreenPixmap = (*pScreen->GetScreenPixmap)(pScreen);
 
-#if (XORG_VERSION_CURRENT < XORG_VERSION_NUMERIC(1, 9, 99, 1, 0))
-    PixmapPrivate = pScreenPixmap->devPrivate;
-    if (!PixmapPrivate.ptr)
-        pScreenPixmap->devPrivate = pScreenInfo->pixmapPrivate;
-#endif
-
     /* Tell framebuffer about remapped aperture */
     Entered = (*pScreen->ModifyPixmapHeader)(pScreenPixmap,
         -1, -1, -1, -1, -1, pATI->pMemory);
-
-#if (XORG_VERSION_CURRENT < XORG_VERSION_NUMERIC(1, 9, 99, 1, 0))
-    if (!PixmapPrivate.ptr)
-    {
-        pScreenInfo->pixmapPrivate = pScreenPixmap->devPrivate;
-        pScreenPixmap->devPrivate.ptr = NULL;
-    }
-#endif
 
 #ifdef XF86DRI_DEVEL
 
