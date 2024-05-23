@@ -332,7 +332,7 @@ ATIScreenInit(SCREEN_INIT_ARGS_DECL)
  * This function is called by DIX to close the screen.
  */
 Bool
-ATICloseScreen (CLOSE_SCREEN_ARGS_DECL)
+ATICloseScreen (ScreenPtr pScreen)
 {
     ScrnInfoPtr pScreenInfo = xf86ScreenToScrn(pScreen);
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
@@ -373,5 +373,5 @@ ATICloseScreen (CLOSE_SCREEN_ARGS_DECL)
     pScreenInfo->pScreen = NULL;
 
     pScreen->CloseScreen = pATI->CloseScreen;
-    return (*pScreen->CloseScreen)(CLOSE_SCREEN_ARGS);
+    return (*pScreen->CloseScreen)(pScreen);
 }

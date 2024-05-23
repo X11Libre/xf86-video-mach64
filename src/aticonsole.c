@@ -558,8 +558,8 @@ ATIEnterGraphics
        (void)ATISaveScreen(pScreen, SCREEN_SAVER_ON);
 
     /* Position the screen */
-    (*pScreenInfo->AdjustFrame)(ADJUST_FRAME_ARGS(pScreenInfo,
-        pScreenInfo->frameX0, pScreenInfo->frameY0));
+    (*pScreenInfo->AdjustFrame)(pScreenInfo,
+        pScreenInfo->frameX0, pScreenInfo->frameY0);
 
     SetTimeSinceLastInputEvent();
 
@@ -675,9 +675,8 @@ ATISwitchMode(SWITCH_MODE_ARGS_DECL)
  * This function sets the server's virtual console to a graphics video state.
  */
 Bool
-ATIEnterVT(VT_FUNC_ARGS_DECL)
+ATIEnterVT(ScrnInfoPtr pScreenInfo)
 {
-    SCRN_INFO_PTR(arg);
     ScreenPtr   pScreen     = pScreenInfo->pScreen;
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
     PixmapPtr   pScreenPixmap;
@@ -731,9 +730,8 @@ ATIEnterVT(VT_FUNC_ARGS_DECL)
  * entry.
  */
 void
-ATILeaveVT(VT_FUNC_ARGS_DECL)
+ATILeaveVT(ScrnInfoPtr pScreenInfo)
 {
-    SCRN_INFO_PTR(arg);
     ScreenPtr   pScreen     = pScreenInfo->pScreen;
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
 
@@ -756,9 +754,8 @@ ATILeaveVT(VT_FUNC_ARGS_DECL)
  * This function frees all driver data related to a screen.
  */
 void
-ATIFreeScreen(FREE_SCREEN_ARGS_DECL)
+ATIFreeScreen(ScrnInfoPtr pScreenInfo)
 {
-    SCRN_INFO_PTR(arg);
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
 
     ATII2CFreeScreen(pScreenInfo->scrnIndex);

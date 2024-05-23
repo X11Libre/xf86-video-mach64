@@ -130,7 +130,7 @@ ATIDGASetMode
         return FALSE;
     if (!pDGAMode)
         pATI->currentMode = NULL;
-    (*pScreenInfo->AdjustFrame)(ADJUST_FRAME_ARGS(pScreenInfo, frameX0, frameY0));
+    (*pScreenInfo->AdjustFrame)(pScreenInfo, frameX0, frameY0);
 
     return TRUE;
 }
@@ -149,7 +149,7 @@ ATIDGASetViewport
     int         flags
 )
 {
-    (*pScreenInfo->AdjustFrame)(ADJUST_FRAME_ARGS(pScreenInfo, x, y));
+    (*pScreenInfo->AdjustFrame)(pScreenInfo, x, y);
 }
 
 /*

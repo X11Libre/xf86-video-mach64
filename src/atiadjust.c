@@ -85,9 +85,8 @@ ATIAdjustPreInit
  * window.
  */
 void
-ATIAdjustFrame(ADJUST_FRAME_ARGS_DECL)
+ATIAdjustFrame(ScrnInfoPtr pScreenInfo, int x, int y)
 {
-    SCRN_INFO_PTR(arg);
     ATIPtr      pATI = ATIPTR(pScreenInfo);
     int         Base;
 
