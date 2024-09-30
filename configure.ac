@@ -24,7 +24,7 @@
 AC_PREREQ([2.60])
 AC_INIT([xf86-video-mach64],
         [6.9.7],
-        [https://gitlab.freedesktop.org/xorg/driver/xf86-video-mach64/issues],
+        [https://gitlab.freedesktop.org/xorg/driver/xf86-video-mach64/-/issues],
         [xf86-video-mach64])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
@@ -222,7 +222,7 @@ AC_SUBST([DRIVER_NAME])
 AC_MSG_NOTICE(
 [Please change the Driver line in xorg.conf from "ati" to "mach64"]
 [ or install the ati wrapper as well:]
-[    git://anongit.freedesktop.org/git/xorg/driver/xf86-video-ati]
+[    https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati]
 )
 
 AC_CONFIG_FILES([
