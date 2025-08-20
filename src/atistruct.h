@@ -42,7 +42,7 @@
 #include "sarea.h"
 #include "xf86drm.h"
 #include "dri.h"
- 
+
 #endif /* XF86DRI_DEVEL */
 
 #ifdef TV_OUT
@@ -480,7 +480,7 @@ typedef struct _ATIRec
     ATIDRIServerInfoPtr pDRIServerInfo;
     Bool NeedDRISync;
     Bool have3DWindows;
-                                                                                
+
     /* offscreen memory management */
     CARD8 OptionIsPCI;           /* Force PCI mode */
     CARD8 OptionDMAMode;         /* async, sync, mmio */

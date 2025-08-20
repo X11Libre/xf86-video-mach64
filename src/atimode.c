@@ -730,7 +730,7 @@ ATISetVBEMode
 	int vbemode, modekey;
 
 	/* Find a suitable VESA VBE mode, if one exists */
-	modekey = (pScreenInfo->depth << 16) | 
+	modekey = (pScreenInfo->depth << 16) |
 	    (pScreenInfo->currentMode->HDisplay);
 
 	switch (modekey) {
@@ -768,8 +768,8 @@ ATISetVBEMode
 	    break;
 #endif
 	default:
-	    xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO, 
-		       "Mode not supported for TV-Out: depth: %d HDisplay: %d\n", 
+	    xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO,
+		       "Mode not supported for TV-Out: depth: %d HDisplay: %d\n",
 		       modekey>>16, modekey & 0xffff);
 	    return;
 	}
@@ -780,10 +780,10 @@ ATISetVBEMode
             vbemode |= (1<<15);
 
 	    if (VBESetVBEMode(pATI->pVBE, vbemode, NULL)) {
-		xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO, 
+		xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO,
 			   "VBESetMode: 0x%X (width: %d, pitch: %d, depth: %d)\n",
-			   vbemode, 
-			   pScreenInfo->currentMode->HDisplay,     
+			   vbemode,
+			   pScreenInfo->currentMode->HDisplay,
 			   pScreenInfo->displayWidth,
 			   pScreenInfo->depth);
 		outr(CRTC_OFF_PITCH,
@@ -798,7 +798,7 @@ ATISetVBEMode
 	/* restore text mode with VBESetMode */
 	if (pATI->pVBE) {
 	    if (VBESetVBEMode(pATI->pVBE, pATI->vbemode, NULL)) {
-		xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO, "Restoring VESA mode: 0x%x\n", 
+		xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO, "Restoring VESA mode: 0x%x\n",
 			   pATI->vbemode);
 	    } else {
 	        xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING, "VBESetMode failed.\n");

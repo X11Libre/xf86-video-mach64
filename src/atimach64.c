@@ -42,7 +42,7 @@
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-/* 
+/*
  * DRI support by:
  *    Manuel Teira
  *    Leif Delgass <ldelgass@retinalburn.net>
@@ -225,7 +225,7 @@ ATIMach64PreInit
 
 #ifdef XF86DRI_DEVEL
 
-	    /* Changing the FIFO depth seems to interfere with DMA, so use 
+	    /* Changing the FIFO depth seems to interfere with DMA, so use
 	     * default of 128 entries (0x01)
 	     */
 	    pATIHW->gui_cntl = (inm(GUI_CNTL) & ~CMDFIFO_SIZE_MODE) | 0x01;
