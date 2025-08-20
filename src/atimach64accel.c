@@ -42,7 +42,7 @@
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-/* 
+/*
  * DRI support by:
  *    Manuel Teira
  *    Leif Delgass <ldelgass@retinalburn.net>
@@ -174,7 +174,7 @@ ATIMach64Sync
 
 	outr( BUS_CNTL, pATIHW->bus_cntl );
 
-	/* DRI uses GUI_TRAJ_CNTL, which is a composite of 
+	/* DRI uses GUI_TRAJ_CNTL, which is a composite of
 	 * src_cntl, dst_cntl, pat_cntl, and host_cntl
 	 */
 	outf( SRC_CNTL, pATIHW->src_cntl );
@@ -227,7 +227,7 @@ ATIMach64Sync
 	ATIMach64WaitForIdle(pATI);
 
 	if (pATI->OptionMMIOCache && pATI->OptionTestMMIOCache) {
-	  
+
 	    /* Only check registers we didn't restore */
 	    TestRegisterCaching(PAT_REG0);
             TestRegisterCaching(PAT_REG1);
@@ -245,7 +245,7 @@ ATIMach64Sync
 #endif /* XF86DRI_DEVEL */
     {
       ATIMach64WaitForIdle(pATI);
-      
+
       if (pATI->OptionMMIOCache && pATI->OptionTestMMIOCache)
       {
         /*

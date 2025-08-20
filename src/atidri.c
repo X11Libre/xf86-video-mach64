@@ -77,7 +77,7 @@ static void ATIDestroyContext( ScreenPtr pScreen, drm_context_t hwContext,
 
 /* Called when the X server is woken up to allow the last client's
  * context to be saved and the X server's context to be loaded.
- * The client detects when it's context is not currently loaded and 
+ * The client detects when it's context is not currently loaded and
  * then loads it itself.  The X server's context is loaded in the
  * XAA Sync callback if NeedDRISync is set.
  */
@@ -86,7 +86,7 @@ static void ATIEnterServer( ScreenPtr pScreen )
    ScrnInfoPtr pScreenInfo = xf86ScreenToScrn(pScreen);
    ATIPtr pATI = ATIPTR(pScreenInfo);
 
-   if ( pATI->directRenderingEnabled ) { 
+   if ( pATI->directRenderingEnabled ) {
       ATIDRIMarkSyncInt(pScreenInfo);
       ATIDRIMarkSyncExt(pScreenInfo);
    }
@@ -94,7 +94,7 @@ static void ATIEnterServer( ScreenPtr pScreen )
 
 /* Called when the X server goes to sleep to allow the X server's
  * context to be saved and the last client's context to be loaded.
- * The client detects when it's context is not currently loaded and 
+ * The client detects when it's context is not currently loaded and
  * then loads it itself.  The X server keeps track of it's own state.
  */
 static void ATILeaveServer( ScreenPtr pScreen )
@@ -166,9 +166,9 @@ static void ATIDRIInitBuffers( WindowPtr pWin, RegionPtr prgn, CARD32 indx )
 }
 
 /* Copy the back and depth buffers when the X server moves a window.
- * 
+ *
  * Note: this function was copied from the Radeon driver...
- * 
+ *
  * This routine is a modified form of XAADoBitBlt with the calls to
  * ScreenToScreenBitBlt built in. My routine has the prgnSrc as source
  * instead of destination. My origin is upside down so the ydir cases
@@ -231,10 +231,10 @@ static Bool ATIDRISetAgpMode( ScreenPtr pScreen )
 
    if (pATI->OptionAGPMode > 0 && pATI->OptionAGPMode <= ATI_AGP_MAX_MODE) {
       pATIDRIServer->agpMode = pATI->OptionAGPMode;
-      xf86DrvMsg( pScreen->myNum, X_CONFIG, "[agp] Using AGP %dx Mode\n", 
+      xf86DrvMsg( pScreen->myNum, X_CONFIG, "[agp] Using AGP %dx Mode\n",
 		  pATIDRIServer->agpMode );
    } else if (pATI->OptionAGPMode > 0) {
-      xf86DrvMsg( pScreen->myNum, X_ERROR, "[agp] Illegal AGP Mode: %d\n", 
+      xf86DrvMsg( pScreen->myNum, X_ERROR, "[agp] Illegal AGP Mode: %d\n",
 		  pATI->OptionAGPMode );
       return FALSE;
    } else {
@@ -244,7 +244,7 @@ static Bool ATIDRISetAgpMode( ScreenPtr pScreen )
       } else if ( mode & AGP_MODE_1X ) {
 	 pATIDRIServer->agpMode = 1;
       }
-      xf86DrvMsg( pScreen->myNum, X_DEFAULT, "[agp] Using AGP %dx Mode\n", 
+      xf86DrvMsg( pScreen->myNum, X_DEFAULT, "[agp] Using AGP %dx Mode\n",
 		  pATIDRIServer->agpMode );
    }
 
@@ -263,7 +263,7 @@ static Bool ATIDRISetAgpMode( ScreenPtr pScreen )
       case   8:
       case   4:
 	 pATIDRIServer->agpSize = pATI->OptionAGPSize;
-	 xf86DrvMsg( pScreen->myNum, X_CONFIG, "[agp] Using %d MB AGP aperture\n", 
+	 xf86DrvMsg( pScreen->myNum, X_CONFIG, "[agp] Using %d MB AGP aperture\n",
 		     pATIDRIServer->agpSize );
 	 break;
       default:
@@ -272,7 +272,7 @@ static Bool ATIDRISetAgpMode( ScreenPtr pScreen )
 	 return FALSE;
       }
    } else {
-      xf86DrvMsg( pScreen->myNum, X_DEFAULT, "[agp] Using %d MB AGP aperture\n", 
+      xf86DrvMsg( pScreen->myNum, X_DEFAULT, "[agp] Using %d MB AGP aperture\n",
 		  pATIDRIServer->agpSize );
    }
 
@@ -352,7 +352,7 @@ static Bool ATIDRIAgpInit( ScreenPtr pScreen )
    /* Reserve space for the vertex buffer */
    pATIDRIServer->bufferStart   = pATIDRIServer->ringStart + pATIDRIServer->ringMapSize;
    pATIDRIServer->bufferMapSize = pATIDRIServer->bufferSize*1024*1024;
-    
+
    /* Reserve the rest for AGP textures */
    pATIDRIServer->agpTexStart = pATIDRIServer->bufferStart + pATIDRIServer->bufferMapSize;
    s = (pATIDRIServer->agpSize*1024*1024 - pATIDRIServer->agpTexStart);
@@ -569,7 +569,7 @@ static Bool ATIDRIKernelInit( ScreenPtr pScreen )
    info.buffers_offset		= pATIDRIServer->bufferHandle;
    info.agp_textures_offset	= pATIDRIServer->agpTexHandle;
 
-   if ( drmCommandWrite( pATI->drmFD, DRM_MACH64_INIT, 
+   if ( drmCommandWrite( pATI->drmFD, DRM_MACH64_INIT,
 			 &info, sizeof(drmMach64Init) ) < 0 ) {
       return FALSE;
    } else {
@@ -832,7 +832,7 @@ Bool ATIDRIScreenInit( ScreenPtr pScreen )
 		  "[dri] DRIScreenInit Failed\n" );
       return FALSE;
    }
-   
+
    /* Check the DRM lib version.
       drmGetLibVersion was not supported in version 1.0, so check for
       symbol first to avoid possible crash or hang.
@@ -968,9 +968,9 @@ Bool ATIDRIFinishScreenInit( ScreenPtr pScreen )
 
    /* Initialize the kernel data structures */
    if ( !ATIDRIKernelInit( pScreen ) ) {
-      xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR, 
+      xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR,
 		 "[drm] Failed to initialize the mach64.o kernel module\n");
-      xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR, 
+      xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR,
 		 "[drm] Check the system log for more information.\n");
       ATIDRICloseScreen( pScreen );
       return FALSE;

@@ -82,7 +82,7 @@ ATIUnlock
 #ifdef XF86DRI_DEVEL
 
 	if (pATI->irq > 0)
-	    outr(CRTC_INT_CNTL, (inr(CRTC_INT_CNTL) & ~CRTC_INT_ACKS) | 
+	    outr(CRTC_INT_CNTL, (inr(CRTC_INT_CNTL) & ~CRTC_INT_ACKS) |
 		 CRTC_VBLANK_INT_EN); /* Enable VBLANK interrupt - handled by DRM */
 
 #endif /* XF86DRI_DEVEL */

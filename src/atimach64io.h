@@ -207,7 +207,7 @@ extern void ATIMach64PollEngineStatus(ATIPtr);
         ATIMach64PollEngineStatus(_pATI)
 
 #ifdef XF86DRI_DEVEL
- 
+
 /*
  * DRI Sync and Lock definitions.
  */
@@ -279,7 +279,7 @@ do                                              \
         ATIDRIMarkSyncExt(_pScrInfo);           \
     }                                           \
 } while (0)
-                                                                                
+
 #define ATIDRIUnlock(_pScrInfo)                 \
 do                                              \
 {                                               \
@@ -292,12 +292,12 @@ do                                              \
 
 #else /* XF86DRI_DEVEL */
 
-                                                                                               
+
 #define ATIDRIWaitForIdle(_pATI)
 #define ATIDRILock(_pScrInfo)
 #define ATIDRIUnlock(_pScrInfo)
 #define ATIDRISync(_pScrInfo)
-                                                                                               
+
 #endif /* XF86DRI_DEVEL */
 
 

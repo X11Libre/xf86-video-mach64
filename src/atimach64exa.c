@@ -42,7 +42,7 @@
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-/* 
+/*
  * DRI support by:
  *    Manuel Teira
  *    Leif Delgass <ldelgass@retinalburn.net>
@@ -214,8 +214,8 @@ Mach64PrepareCopy
     outf(DP_WRITE_MASK, planemask);
     outf(DP_PIX_WIDTH, dp_pix_width);
     outf(SRC_OFF_PITCH, src_pitch_offset);
-    outf(DST_OFF_PITCH, dst_pitch_offset); 
-    
+    outf(DST_OFF_PITCH, dst_pitch_offset);
+
     outf(DP_SRC, DP_MONO_SRC_ALLONES |
         SetBits(SRC_BLIT, DP_FRGD_SRC) | SetBits(SRC_BKGD, DP_BKGD_SRC));
     outf(DP_MIX, SetBits(ATIMach64ALU[alu], DP_FRGD_MIX));
@@ -304,8 +304,8 @@ static Bool
 Mach64PrepareSolid
 (
     PixmapPtr pPixmap,
-    int       alu, 
-    Pixel     planemask, 
+    int       alu,
+    Pixel     planemask,
     Pixel     fg
 )
 {
@@ -323,7 +323,7 @@ Mach64PrepareSolid
     ATIMach64WaitForFIFO(pATI, 7);
     outf(DP_WRITE_MASK, planemask);
     outf(DP_PIX_WIDTH, dp_pix_width);
-    outf(DST_OFF_PITCH, dst_pitch_offset); 
+    outf(DST_OFF_PITCH, dst_pitch_offset);
 
     outf(DP_SRC, DP_MONO_SRC_ALLONES |
         SetBits(SRC_FRGD, DP_FRGD_SRC) | SetBits(SRC_BKGD, DP_BKGD_SRC));
@@ -341,10 +341,10 @@ Mach64PrepareSolid
 static void
 Mach64Solid
 (
-    PixmapPtr pPixmap, 
-    int       x1, 
-    int       y1, 
-    int       x2, 
+    PixmapPtr pPixmap,
+    int       x1,
+    int       y1,
+    int       x2,
     int       y2
 )
 {

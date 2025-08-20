@@ -314,7 +314,7 @@ ATIProcessOptions
 #if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 25
 # define boolean bool
 #endif
-    
+
 #   define ProbeSparse   PublicOption[ATI_OPTION_PROBE_SPARSE].value.boolean
 #   define Accel         PublicOption[ATI_OPTION_ACCEL].value.boolean
 #   define BIOSDisplay   PrivateOption[ATI_OPTION_BIOS_DISPLAY].value.boolean
@@ -446,9 +446,9 @@ ATIProcessOptions
     else {
         xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
 		   "Unknown dma_mode: '%s'\n", DMAMode);
-	xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING, 
+	xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
 		   "Valid dma_mode options are: 'async','sync','mmio'\n");
-        xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING, 
+        xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
 		   "Defaulting to async DMA mode\n");
 	pATI->OptionDMAMode = MACH64_MODE_DMA_ASYNC;
     }

@@ -77,7 +77,7 @@
  *
  * A texture unit combines the fragment color (VERTEX_?_ARGB) coming in from
  * triangle rasterization with the texel from the texture according to the
- * texture environment (TEX_LIGHT_FCN_). "1x1 R" textures may come in as 
+ * texture environment (TEX_LIGHT_FCN_). "1x1 R" textures may come in as
  * fragment colors, eliminating the need for multitexturing in all interesting
  * cases (via also uses this optimization).
  *
