@@ -741,11 +741,14 @@ Bool ATIDRIScreenInit( ScreenPtr pScreen )
    if (xf86LoaderCheckSymbol("DRICreatePCIBusID")) {
       pDRIInfo->busIdString = DRICreatePCIBusID(pATI->PCIInfo);
    } else {
-      XNFasprintf(&pDRIInfo->busIdString,
+      if (asprintf(&pDRIInfo->busIdString,
                   "PCI:%d:%d:%d",
                   PCI_DEV_BUS(pATI->PCIInfo),
                   PCI_DEV_DEV(pATI->PCIInfo),
-                  PCI_DEV_FUNC(pATI->PCIInfo) );
+                  PCI_DEV_FUNC(pATI->PCIInfo)) == -1) {
+        xf86DrvMsg( pScreen->myNum, X_ERROR, "malloc failed\n");
+        return FALSE;
+      }
    }
    pDRIInfo->ddxDriverMajorVersion = MACH64_VERSION_MAJOR;
    pDRIInfo->ddxDriverMinorVersion = MACH64_VERSION_MINOR;
