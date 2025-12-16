@@ -753,25 +753,12 @@
 
   If you are experiencing problems that are not already recorded in this
   document, first ensure that you have the latest current release of
-  this driver and the Xorg X server.  Check the server's log (usually
-  found in /var/log/Xorg.0.log) and https://www.x.org/releases/individual/
-  if you are uncertain.
+  this driver and the XLibre X server.  Check the server's log (usually
+  found in /var/log/Xorg.0.log) if you are uncertain.
 
-  Secondly, please check Xorg's doc directory for additional
-  information.
+  Please report problems as issues at:
 
-  Thirdly, a scan through the comp.windows.x.i386unix and
-  comp.os.linux.x newsgroups, the xorg mailing list archives at
-  https://lists.x.org/mailman/listinfo/xorg, and the Xorg bug
-  database at https://gitlab.freedesktop.org/groups/xorg/-/issues
-  can also prove useful in resolving problems.
-
-  If you are still experiencing problems, you can send non-HTMLised e-
-  mail to  <mailto:xorg@lists.fredesktop.org>.  Please be as specific as
-  possible when describing the problem(s), and include an unedited copy
-  of the server's log and the xorg.conf file used.
-
-
+     https://github.com/X11Libre/xf86-video-mach64/issues
 
   9.  Driver history
 
@@ -829,18 +816,8 @@
 
   -----------------------------------------------------------------------
 
-All questions regarding this software should be directed at the
-Xorg mailing list:
-
-        https://lists.freedesktop.org/mailman/listinfo/xorg
-
 The primary development code repository can be found at:
 
-        https://gitlab.freedesktop.org/xorg/driver/xf86-video-mach64
+        https://github.com/X11Libre/xf86-video-mach64
 
 Please submit bug reports and requests to merge patches there.
-
-For patch submission instructions, see:
-
-	https://www.x.org/wiki/Development/Documentation/SubmittingPatches
-
