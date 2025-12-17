@@ -60,15 +60,7 @@
 #include "atimach64io.h"
 #include "atirgb514.h"
 
-#ifdef HAVE_XEXTPROTO_71
 #include <X11/extensions/dpmsconst.h>
-#else
-#ifndef DPMS_SERVER
-# define DPMS_SERVER
-#endif
-#include <X11/extensions/dpms.h>
-#endif
-
 
 /*
  * ATIMach64PreInit --
