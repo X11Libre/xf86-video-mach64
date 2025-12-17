@@ -24,10 +24,7 @@
  *    José Fonseca <j_r_fonseca@yahoo.co.uk>
  *    Leif Delgass <ldelgass@retinalburn.net>
  */
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <string.h>
 

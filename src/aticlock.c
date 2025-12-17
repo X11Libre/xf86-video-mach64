@@ -39,10 +39,7 @@
  * then encoded in a generator-specific way and used to programme the clock.
  * The Mach64's clock divider is not used in this case.
  */
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <stdlib.h>
 #include "ati.h"

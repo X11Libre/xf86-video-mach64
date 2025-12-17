@@ -23,10 +23,7 @@
  *    Manuel Teira
  *    Leif Delgass <ldelgass@retinalburn.net>
  */
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include "xorgVersion.h"
 #include "ati.h"
