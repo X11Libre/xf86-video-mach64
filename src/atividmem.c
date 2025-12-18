@@ -81,11 +81,7 @@ ATIUnmapVGA
     if (!pATI->pBank)
         return;
 
-#ifndef XSERVER_LIBPCIACCESS
-    xf86UnMapVidMem(iScreen, pATI->pBank, 0x00010000U);
-#else
     (void) pci_device_unmap_legacy(pATI->PCIInfo, pATI->pBank, 0x00010000U);
-#endif
 
     pATI->pBank = NULL;
 }
@@ -106,21 +102,13 @@ ATIUnmapLinear
 {
     if (pATI->pMemory)
     {
-#ifndef XSERVER_LIBPCIACCESS
-        xf86UnMapVidMem(iScreen, pATI->pMemory, pATI->LinearSize);
-#else
         pci_device_unmap_range(pATI->PCIInfo, pATI->pMemory, pATI->LinearSize);
-#endif
 
 #if X_BYTE_ORDER != X_LITTLE_ENDIAN
 
         if (pATI->pMemoryLE)
         {
-#ifndef XSERVER_LIBPCIACCESS
-            xf86UnMapVidMem(iScreen, pATI->pMemoryLE, pATI->LinearSize);
-#else
             pci_device_unmap_range(pATI->PCIInfo, pATI->pMemoryLE, pATI->LinearSize);
-#endif
         }
 
 #endif /* X_BYTE_ORDER */
@@ -144,16 +132,12 @@ ATIUnmapMMIO
 {
     if (pATI->pMMIO)
     {
-#ifndef XSERVER_LIBPCIACCESS
-        xf86UnMapVidMem(iScreen, pATI->pMMIO, getpagesize());
-#else
         unsigned long size;
 
         size = PCI_REGION_SIZE(pATI->PCIInfo, 2);
         if (!size || size > getpagesize())
                 size = getpagesize();
         pci_device_unmap_range(pATI->PCIInfo, pATI->pMMIO, size);
-#endif
     }
 
     pATI->pMMIO = pATI->pBlock[0] = pATI->pBlock[1] = NULL;
@@ -173,11 +157,7 @@ ATIUnmapCursor
 {
     if (pATI->pCursorPage)
     {
-#ifndef XSERVER_LIBPCIACCESS
-        xf86UnMapVidMem(iScreen, pATI->pCursorPage, getpagesize());
-#else
         pci_device_unmap_range(pATI->PCIInfo, pATI->pCursorPage, getpagesize());
-#endif
     }
 
     pATI->pCursorPage = pATI->pCursorImage = NULL;
@@ -201,11 +181,7 @@ ATIMapApertures
 )
 {
     pciVideoPtr   pVideo = pATI->PCIInfo;
-#ifndef XSERVER_LIBPCIACCESS
-    PCITAG        Tag = PCI_CFG_TAG(pVideo);
-#else
     pciVideoPtr   Tag = pVideo;
-#endif
     unsigned long PageSize = getpagesize();
 
     if (pATI->Mapped)
@@ -220,14 +196,9 @@ ATIMapApertures
          * No relocation, resizing, caching or write-combining of this
          * aperture is supported.  Hence, the hard-coded values here...
          */
-#ifndef XSERVER_LIBPCIACCESS
-        pATI->pBank = xf86MapDomainMemory(iScreen, VIDMEM_MMIO_32BIT,
-                                          Tag, 0x000A0000U, 0x00010000U);
-#else
         (void) pci_device_map_legacy(Tag, 0x000A0000U, 0x00010000U,
                                      PCI_DEV_MAP_FLAG_WRITABLE,
                                      &pATI->pBank);
-#endif
 
         if (!pATI->pBank)
             return FALSE;
@@ -240,14 +211,6 @@ ATIMapApertures
     /* Map linear aperture */
     if (pATI->LinearBase)
     {
-
-#ifndef XSERVER_LIBPCIACCESS
-
-            pATI->pMemory = xf86MapPciMem(iScreen, VIDMEM_FRAMEBUFFER,
-                Tag, pATI->LinearBase, pATI->LinearSize);
-
-#else /* XSERVER_LIBPCIACCESS */
-
         int mode = PCI_DEV_MAP_FLAG_WRITABLE | PCI_DEV_MAP_FLAG_WRITE_COMBINE;
 
         int err = pci_device_map_range(pVideo,
@@ -261,8 +224,6 @@ ATIMapApertures
                     "Unable to map linear aperture. %s (%d)\n",
                     strerror (err), err);
         }
-
-#endif /* XSERVER_LIBPCIACCESS */
 
         if (!pATI->pMemory)
         {
@@ -294,15 +255,6 @@ ATIMapApertures
          * caching of this area is _not_ wanted.
          */
         {
-
-#ifndef XSERVER_LIBPCIACCESS
-
-            pATI->pMemoryLE = xf86MapPciMem(iScreen, VIDMEM_MMIO, Tag,
-                pATI->LinearBase - 0x00800000U, pATI->LinearSize);
-
-
-#else /* XSERVER_LIBPCIACCESS */
-
         int mode = PCI_DEV_MAP_FLAG_WRITABLE;
 
         int err = pci_device_map_range(pVideo,
@@ -316,8 +268,6 @@ ATIMapApertures
                     "Unable to map extended linear aperture. %s (%d)\n",
                     strerror (err), err);
         }
-
-#endif /* XSERVER_LIBPCIACCESS */
 
             if (!pATI->pMemoryLE)
             {
@@ -343,13 +293,6 @@ ATIMapApertures
     {
         unsigned long MMIOBase = pATI->Block0Base & ~(PageSize - 1);
 
-#ifndef XSERVER_LIBPCIACCESS
-
-            pATI->pMMIO = xf86MapPciMem(iScreen, VIDMEM_MMIO,
-                Tag, MMIOBase, PageSize);
-
-#else /* XSERVER_LIBPCIACCESS */
-
         int mode = PCI_DEV_MAP_FLAG_WRITABLE;
 
         int err;
@@ -368,8 +311,6 @@ ATIMapApertures
                     "Unable to map mmio aperture. %s (%d)\n",
                     strerror (err), err);
         }
-
-#endif /* XSERVER_LIBPCIACCESS */
 
         if (!pATI->pMMIO)
         {
@@ -418,16 +359,7 @@ ATIMapApertures
     if (pATI->CursorBase && !pATI->pCursorImage)
     {
         unsigned long CursorBase = pATI->CursorBase & ~(PageSize - 1);
-
-#ifndef XSERVER_LIBPCIACCESS
-
-            pATI->pCursorPage = xf86MapPciMem(iScreen, VIDMEM_FRAMEBUFFER,
-                Tag, CursorBase, PageSize);
-
-#else /* XSERVER_LIBPCIACCESS */
-
         int mode = PCI_DEV_MAP_FLAG_WRITABLE | PCI_DEV_MAP_FLAG_WRITE_COMBINE;
-
         int err = pci_device_map_range(pVideo,
                                        CursorBase,
                                        PageSize,
@@ -439,8 +371,6 @@ ATIMapApertures
                     "Unable to map cursor aperture. %s (%d)\n",
                     strerror (err), err);
         }
-
-#endif /* XSERVER_LIBPCIACCESS */
 
         if (!pATI->pCursorPage)
         {

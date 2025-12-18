@@ -267,12 +267,6 @@ typedef struct _ATIRec
     pciVideoPtr PCIInfo;
     CARD8 BusType;
 
-#ifndef AVOID_CPIO
-#ifndef XSERVER_LIBPCIACCESS
-     resRange VGAWonderResources[2];
-#endif
-#endif /* AVOID_CPIO */
-
     /*
      * Definitions related to video memory.
      */

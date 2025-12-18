@@ -194,19 +194,12 @@ if test "x$have_exa_h" = xyes; then
         fi
 fi
 
-AC_CHECK_DECL(XSERVER_LIBPCIACCESS,
-	      [XSERVER_LIBPCIACCESS=yes],[XSERVER_LIBPCIACCESS=no],
-	      [#include "xorg-server.h"])
-
 CPPFLAGS="$SAVE_CPPFLAGS"
 
 AM_CONDITIONAL(USE_EXA, test "x$USE_EXA" = xyes)
 
-if test "x$XSERVER_LIBPCIACCESS" = xyes; then
-    PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.12.901])
-    XORG_CFLAGS="$XORG_CFLAGS $PCIACCESS_CFLAGS"
-fi
-AM_CONDITIONAL(XSERVER_LIBPCIACCESS, test "x$XSERVER_LIBPCIACCESS" = xyes)
+PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.12.901])
+XORG_CFLAGS="$XORG_CFLAGS $PCIACCESS_CFLAGS"
 
 AC_SUBST([moduledir])
 

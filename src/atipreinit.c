@@ -503,9 +503,6 @@ ATIPreInit
     ATIPtr           pATI;
     GDevPtr          pGDev;
     EntityInfoPtr    pEntity;
-#ifndef XSERVER_LIBPCIACCESS
-    resPtr           pResources;
-#endif
     pciVideoPtr      pVideo;
     DisplayModePtr   pMode;
     CARD32           IOValue;
@@ -545,9 +542,6 @@ ATIPreInit
     /* Register resources */
     pEntity = xf86GetEntityInfo(pScreenInfo->entityList[0]);
     pGDev = pEntity->device;
-#ifndef XSERVER_LIBPCIACCESS
-    pResources = pEntity->resources;
-#endif
 
     pATI->iEntity = pEntity->index;
     pATI->Chip = pEntity->chipset;
@@ -555,17 +549,6 @@ ATIPreInit
 
     free(pEntity);
 
-#ifndef XSERVER_LIBPCIACCESS
-    if (!pResources)
-        pResources = xf86RegisterResources(pATI->iEntity, NULL, ResShared);
-    if (pResources)
-    {
-        xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR,
-            "Unable to register bus resources\n");
-        xf86FreeResList(pResources);
-        return FALSE;
-    }
-#endif
     ConfiguredMonitor = NULL;
     (void)memset(BIOS, 0, SizeOf(BIOS));
 
@@ -723,20 +706,6 @@ ATIPreInit
 
 #endif /* AVOID_CPIO */
 
-#ifndef XSERVER_LIBPCIACCESS
-#ifdef AVOID_CPIO
-
-    pScreenInfo->racMemFlags =
-        RAC_FB | RAC_COLORMAP | RAC_VIEWPORT | RAC_CURSOR;
-
-#else /* AVOID_CPIO */
-
-    pScreenInfo->racIoFlags =
-        RAC_FB | RAC_COLORMAP | RAC_VIEWPORT | RAC_CURSOR;
-    pScreenInfo->racMemFlags = RAC_FB | RAC_CURSOR;
-
-#endif /* AVOID_CPIO */
-#endif
     /* Finish private area initialisation */
     pATI->nFIFOEntries = 16;                    /* For now */
 
@@ -1027,17 +996,6 @@ ATIPreInit
         xf86DrvMsg(pScreenInfo->scrnIndex, X_PROBED, "%s.\n", Buffer);
     }
 
-#ifndef XSERVER_LIBPCIACCESS
-#ifndef AVOID_CPIO
-
-    if (pATI->CPIO_VGAWonder)
-        xf86DrvMsg(pScreenInfo->scrnIndex, X_PROBED,
-            "VGA Wonder registers at I/O port 0x%04lX.\n",
-            pATI->CPIO_VGAWonder);
-
-#endif /* AVOID_CPIO */
-#endif
-
     xf86DrvMsg(pScreenInfo->scrnIndex, X_PROBED,
         "ATI Mach64 adapter detected.\n");
 
@@ -1072,15 +1030,6 @@ ATIPreInit
             }
         }
     }
-
-#ifndef XSERVER_LIBPCIACCESS
-    if (!xf86LinearVidMem())
-    {
-        xf86DrvMsg(pScreenInfo->scrnIndex, X_ERROR,
-            "A linear aperture is not available.\n");
-        goto bail;
-    }
-#endif
 
     /*
      * Set colour weights.
@@ -1148,42 +1097,6 @@ ATIPreInit
 
         xf86DrvMsg(pScreenInfo->scrnIndex, X_INFO,
             "Using Mach64 accelerator CRTC.\n");
-
-#ifndef XSERVER_LIBPCIACCESS
-#ifndef AVOID_CPIO
-
-        if (pATI->VGAAdapter)
-        {
-            /*
-             * No need for VGA I/O resources during operating state (but they
-             * are still decoded).
-             */
-            pResources =
-                xf86SetOperatingState(resVgaIo, pATI->iEntity, ResUnusedOpr);
-            if (pResources)
-            {
-                xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
-                    "Logic error setting operating state for VGA I/O.\n");
-                xf86FreeResList(pResources);
-            }
-
-            if (pATI->CPIO_VGAWonder)
-            {
-                pResources = xf86SetOperatingState(pATI->VGAWonderResources,
-                    pATI->iEntity, ResUnusedOpr);
-                if (pResources)
-                {
-                    xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
-                        "Logic error setting operating state for"
-                        " VGAWonder I/O.\n");
-                    xf86FreeResList(pResources);
-                }
-            }
-        }
-
-#endif /* AVOID_CPIO */
-#endif
-
     }
 
     /*
@@ -1937,29 +1850,6 @@ ATIPreInit
             }
         }
     }
-
-#ifndef XSERVER_LIBPCIACCESS
-#ifndef AVOID_CPIO
-
-        if (pATI->VGAAdapter)
-        {
-            /*
-             * Free VGA memory aperture during operating state (but it is still
-             * decoded).
-             */
-            pResources = xf86SetOperatingState(resVgaMem, pATI->iEntity,
-                ResUnusedOpr);
-            if (pResources)
-            {
-                xf86DrvMsg(pScreenInfo->scrnIndex, X_WARNING,
-                    "Logic error setting operating state for VGA memory"
-                    " aperture.\n");
-                xf86FreeResList(pResources);
-            }
-        }
-
-#endif /* AVOID_CPIO */
-#endif
 
     /*
      * Remap apertures.  Must lock and re-unlock around this in case the

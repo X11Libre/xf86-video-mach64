@@ -72,10 +72,6 @@
 #define PCI_CHIP_MACH64VU		0x5655
 #define PCI_CHIP_MACH64VV		0x5656
 
-#ifndef XSERVER_LIBPCIACCESS
-static Bool Mach64Probe(DriverPtr pDriver, int flags);
-#endif
-
 SymTabRec
 Mach64Chipsets[] = {
     {ATI_CHIP_88800GXC, "ATI 88800GX-C"},
@@ -144,8 +140,6 @@ Mach64PciChipsets[] = {
     {-1, -1, RES_UNDEFINED}
 };
 
-#ifdef XSERVER_LIBPCIACCESS
-
 static const struct pci_id_match mach64_device_match[] = {
     ATI_DEVICE_MATCH( PCI_CHIP_MACH64GX, 0 ),
     ATI_DEVICE_MATCH( PCI_CHIP_MACH64CX, 0 ),
@@ -184,8 +178,6 @@ static const struct pci_id_match mach64_device_match[] = {
     { 0, 0, 0 }
 };
 
-#endif /* XSERVER_LIBPCIACCESS */
-
 static const OptionInfoRec *
 Mach64AvailableOptions(int chipid, int busid)
 {
@@ -221,11 +213,7 @@ mach64_get_scrninfo(int entity_num)
     pScrn->driverVersion = MACH64_VERSION_CURRENT;
     pScrn->driverName    = MACH64_DRIVER_NAME;
     pScrn->name          = MACH64_NAME;
-#ifdef XSERVER_LIBPCIACCESS
     pScrn->Probe         = NULL;
-#else
-    pScrn->Probe         = Mach64Probe;
-#endif
     pScrn->PreInit       = ATIPreInit;
     pScrn->ScreenInit    = ATIScreenInit;
     pScrn->SwitchMode    = ATISwitchMode;
@@ -238,56 +226,6 @@ mach64_get_scrninfo(int entity_num)
     return TRUE;
 }
 
-#ifndef XSERVER_LIBPCIACCESS
-
-/*
- * Mach64Probe --
- *
- * This function is called once, at the start of the first server generation to
- * do a minimal probe for supported hardware.
- */
-static Bool
-Mach64Probe(DriverPtr pDriver, int flags)
-{
-    GDevPtr *devSections;
-    int     *usedChips;
-    int     numDevSections;
-    int     numUsed;
-    Bool    ProbeSuccess = FALSE;
-
-    if (xf86GetPciVideoInfo() == NULL)
-        return FALSE;
-
-    numDevSections = xf86MatchDevice(MACH64_DRIVER_NAME, &devSections);
-
-    if (numDevSections <= 0)
-        return FALSE;
-
-    numUsed = xf86MatchPciInstances(MACH64_NAME, PCI_VENDOR_ATI,
-                                    Mach64Chipsets, Mach64PciChipsets,
-                                    devSections, numDevSections,
-                                    pDriver, &usedChips);
-    free(devSections);
-
-    if (numUsed <= 0)
-        return FALSE;
-
-    if (flags & PROBE_DETECT) {
-        ProbeSuccess = TRUE;
-    } else {
-        for (int i = 0; i < numUsed; i++) {
-            if (mach64_get_scrninfo(usedChips[i]))
-                ProbeSuccess = TRUE;
-        }
-    }
-
-    free(usedChips);
-
-    return ProbeSuccess;
-}
-
-#else /* XSERVER_LIBPCIACCESS */
-
 static Bool
 mach64_pci_probe(
     DriverPtr          pDriver,
@@ -299,24 +237,16 @@ mach64_pci_probe(
     return mach64_get_scrninfo(entity_num);
 }
 
-#endif /* XSERVER_LIBPCIACCESS */
-
 _X_EXPORT DriverRec MACH64 =
 {
     MACH64_VERSION_CURRENT,
     MACH64_DRIVER_NAME,
     Mach64Identify,
-#ifdef XSERVER_LIBPCIACCESS
     NULL,
-#else
-    Mach64Probe,
-#endif
     Mach64AvailableOptions,
     NULL,
     0,
     NULL,
-#ifdef XSERVER_LIBPCIACCESS
     mach64_device_match,
     mach64_pci_probe
-#endif
 };

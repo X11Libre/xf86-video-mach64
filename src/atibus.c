@@ -55,51 +55,6 @@ ATIClaimResources
     Bool   Active
 )
 {
-
-#ifndef XSERVER_LIBPCIACCESS
-#ifndef AVOID_CPIO
-
-    resRange Resources[2] = {{0, 0, 0}, _END};
-
-    /* Claim VGA and VGAWonder resources */
-    if ((pATI->VGAAdapter) && (Active))
-    {
-        /*
-         * 18800-x's are the only ATI controllers that decode all ISA aliases
-         * of VGA and VGA Wonder I/O ports.  Other x8800's do not decode >any<
-         * VGA aliases, but do decode VGA Wonder aliases whose most significant
-         * nibble is zero.
-         */
-        xf86ClaimFixedResources(resVgaShared, pATI->iEntity);
-
-        if (pATI->CPIO_VGAWonder)
-        {
-            Resources[0].type = ResShrIoSparse | ResBus;
-            Resources[0].rBase = pATI->CPIO_VGAWonder;
-            Resources[0].rMask = 0xF3FEU;
-
-            xf86ClaimFixedResources(Resources, pATI->iEntity);
-
-            (void)memcpy(pATI->VGAWonderResources,
-                Resources, SizeOf(Resources));
-        }
-    }
-
-    if (!Active)
-        return;
-
-    /* Claim Mach64 sparse I/O resources */
-    if ((pATI->CPIODecoding == SPARSE_IO))
-    {
-        Resources[0].type = ResShrIoSparse | ResBus;
-        Resources[0].rBase = pATI->CPIOBase;
-        Resources[0].rMask = 0x03FCU;
-
-        xf86ClaimFixedResources(Resources, pATI->iEntity);
-    }
-
-#endif /* AVOID_CPIO */
-#endif
 }
 
 /*
