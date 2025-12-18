@@ -331,8 +331,6 @@
 #define ROM_LOCATION			0xfe00u			/* Mach8 */
 #define _8514_ONLY			0x0001u			/* Mach32 */
 #define BUS_TYPE			0x000eu			/* Mach32 */
-#define ISA_16_BIT				0x0000u		/* Mach32 */
-#define EISA					0x0002u		/* Mach32 */
 #define MICRO_C_16_BIT				0x0004u		/* Mach32 */
 #define MICRO_C_8_BIT				0x0006u		/* Mach32 */
 #define LOCAL_386SX				0x0008u		/* Mach32 */
@@ -354,7 +352,6 @@
 #define FLASH_ENA			0x0010u			/* Mach8 */
 #define SLOW_SEQ_EN			0x0001u			/* Mach32 */
 #define MEM_ADDR_DIS			0x0002u			/* Mach32 */
-#define ISA_16_ENA			0x0004u			/* Mach32 */
 #define KOR_TXT_MODE_ENA		0x0008u			/* Mach32 */
 #define LOCAL_BUS_SUPPORT		0x0030u			/* Mach32 */
 #define LOCAL_BUS_CONFIG_2		0x0040u			/* Mach32 */
