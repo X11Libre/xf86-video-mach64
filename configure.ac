@@ -78,33 +78,33 @@ sdkdir=`$PKG_CONFIG --variable=sdkdir xorg-server`
 # Checks for libraries.
 
 if test "$DRI" != no; then
-	AC_CHECK_FILE([${sdkdir}/dri.h],
-                      [have_dri_h="yes"], [have_dri_h="no"])
-	AC_CHECK_FILE([${sdkdir}/sarea.h],
-                      [have_sarea_h="yes"], [have_sarea_h="no"])
-	AC_CHECK_FILE([${sdkdir}/dristruct.h],
-                      [have_dristruct_h="yes"], [have_dristruct_h="no"])
-	AC_CHECK_FILE([${sdkdir}/damage.h],
-                      [have_damage_h="yes"], [have_damage_h="no"])
+    AC_CHECK_FILE([${sdkdir}/dri.h],
+                  [have_dri_h="yes"], [have_dri_h="no"])
+    AC_CHECK_FILE([${sdkdir}/sarea.h],
+                  [have_sarea_h="yes"], [have_sarea_h="no"])
+    AC_CHECK_FILE([${sdkdir}/dristruct.h],
+                  [have_dristruct_h="yes"], [have_dristruct_h="no"])
+    AC_CHECK_FILE([${sdkdir}/damage.h],
+                  [have_damage_h="yes"], [have_damage_h="no"])
 fi
 
 AC_MSG_CHECKING([whether to include DRI support])
 if test x$DRI = xauto; then
-	if test "$have_dri_h" = yes -a \
-                "$have_sarea_h" = yes -a \
-                "$have_dristruct_h" = yes; then
-		DRI="yes"
-	else
-		DRI="no"
-	fi
+    if test "$have_dri_h" = yes -a \
+            "$have_sarea_h" = yes -a \
+            "$have_dristruct_h" = yes; then
+        DRI="yes"
+    else
+        DRI="no"
+    fi
 fi
 AC_MSG_RESULT([$DRI])
 
 AM_CONDITIONAL(DRI, test x$DRI = xyes)
 if test "$DRI" = yes; then
-	PKG_CHECK_MODULES(DRI, [libdrm >= 2.2 xf86driproto])
-        AC_DEFINE(XF86DRI,1,[Enable DRI driver support])
-        AC_DEFINE(XF86DRI_DEVEL,1,[Enable developmental DRI driver support])
+    PKG_CHECK_MODULES(DRI, [libdrm >= 2.2 xf86driproto])
+    AC_DEFINE(XF86DRI,1,[Enable DRI driver support])
+    AC_DEFINE(XF86DRI_DEVEL,1,[Enable developmental DRI driver support])
 fi
 
 # Note that this is sort of inverted from drivers/ati/Imakefile in
@@ -139,24 +139,24 @@ esac
 AC_MSG_CHECKING([whether to include PIO support])
 AM_CONDITIONAL(ATIMISC_CPIO, test "x$ATIMISC_CPIO" = xyes)
 if test "x$ATIMISC_CPIO" = xyes; then
-	AC_MSG_RESULT([yes, PIO])
+    AC_MSG_RESULT([yes, PIO])
 else
-	AC_DEFINE(AVOID_CPIO, 1, [Avoid PIO and use MMIO for atimisc.])
-	AC_MSG_RESULT([no, MMIO])
+    AC_DEFINE(AVOID_CPIO, 1, [Avoid PIO and use MMIO for atimisc.])
+    AC_MSG_RESULT([no, MMIO])
 fi
 
 AC_MSG_CHECKING([whether to include DGA support])
 AC_MSG_RESULT([$ATIMISC_DGA])
 AM_CONDITIONAL(ATIMISC_DGA, test "x$ATIMISC_DGA" = xyes)
 if ! test "x$ATIMISC_DGA" = xyes; then
-	AC_DEFINE(AVOID_DGA, 1, [Do not build DGA support.])
+    AC_DEFINE(AVOID_DGA, 1, [Do not build DGA support.])
 fi
 
 AC_MSG_CHECKING([whether to include TV Out support])
 AC_MSG_RESULT([$ATIMISC_TV_OUT])
 AM_CONDITIONAL(ATIMISC_TV_OUT, test "x$ATIMISC_TV_OUT" = xyes)
 if test "x$ATIMISC_TV_OUT" = xyes; then
-	AC_DEFINE(TV_OUT, 1, [Build TV-Out support for atimisc.])
+    AC_DEFINE(TV_OUT, 1, [Build TV-Out support for atimisc.])
 fi
 
 # Properly handle EXA.
@@ -202,12 +202,6 @@ PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.12.901])
 XORG_CFLAGS="$XORG_CFLAGS $PCIACCESS_CFLAGS"
 
 AC_SUBST([moduledir])
-
-AC_MSG_NOTICE(
-[Please change the Driver line in xorg.conf from "ati" to "mach64"]
-[ or install the ati wrapper as well:]
-[    https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati]
-)
 
 AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
