@@ -33,7 +33,7 @@ extern void ATISetDPMSMode(ScrnInfoPtr, int, int);
 extern Bool ATIEnterGraphics(ScreenPtr, ScrnInfoPtr, ATIPtr);
 extern void ATILeaveGraphics(ScrnInfoPtr, ATIPtr);
 
-extern Bool ATISwitchMode(SWITCH_MODE_ARGS_DECL);
+extern Bool ATISwitchMode(ScrnInfoPtr arg, DisplayModePtr pMode);
 
 extern Bool ATIEnterVT(ScrnInfoPtr pScrn);
 extern void ATILeaveVT(ScrnInfoPtr pScrn);

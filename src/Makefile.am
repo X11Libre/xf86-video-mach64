@@ -106,5 +106,4 @@ EXTRA_DIST = \
 	mach64_common.h \
 	mach64_dri.h \
 	mach64_sarea.h \
-	atipcirename.h \
-	compat-api.h
+	atipcirename.h

@@ -25,7 +25,7 @@
 
 #include "screenint.h"
 
-extern Bool ATIScreenInit(SCREEN_INIT_ARGS_DECL);
+extern Bool ATIScreenInit(ScreenPtr pScreen, int argc, char **argv);
 extern Bool ATICloseScreen(ScreenPtr pScreen);
 
 #endif /* ___ATISCREEN_H___ */

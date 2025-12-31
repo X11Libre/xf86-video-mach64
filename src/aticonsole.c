@@ -618,9 +618,8 @@ ATILeaveGraphics
  * This function switches to another graphics video state.
  */
 Bool
-ATISwitchMode(SWITCH_MODE_ARGS_DECL)
+ATISwitchMode(ScrnInfoPtr pScreenInfo, DisplayModePtr pMode)
 {
-    SCRN_INFO_PTR(arg);
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
 
     /* Calculate new hardware data */

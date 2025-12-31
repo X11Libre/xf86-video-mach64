@@ -104,7 +104,7 @@ ATIRefreshArea
  * This function is called by DIX to initialise the screen.
  */
 Bool
-ATIScreenInit(SCREEN_INIT_ARGS_DECL)
+ATIScreenInit(ScreenPtr pScreen, int argc, char **argv)
 {
     ScrnInfoPtr  pScreenInfo = xf86ScreenToScrn(pScreen);
     ATIPtr       pATI        = ATIPTR(pScreenInfo);
@@ -297,7 +297,7 @@ ATIScreenInit(SCREEN_INIT_ARGS_DECL)
 #ifdef TV_OUT
     /* Fix-up TV out after ImpacTV probe */
     if (pATI->OptionTvOut && pATI->Chip < ATI_CHIP_264GTPRO)
-        ATISwitchMode(SWITCH_MODE_ARGS(pScreenInfo, pScreenInfo->currentMode));
+        ATISwitchMode(pScreenInfo, pScreenInfo->currentMode);
 #endif /* TV_OUT */
 
 #ifdef XF86DRI_DEVEL

@@ -124,7 +124,7 @@ ATIDGASetMode
     ATIAdjustPreInit(pATI);
     ATIModePreInit(pScreenInfo, pATI, &pATI->NewHW);
 
-    if (!(*pScreenInfo->SwitchMode)(SWITCH_MODE_ARGS(pScreenInfo, pMode)))
+    if (!(*pScreenInfo->SwitchMode)(pScreenInfo, pMode))
         return FALSE;
     if (!pDGAMode)
         pATI->currentMode = NULL;
