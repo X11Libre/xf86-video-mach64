@@ -35,13 +35,12 @@
 ModeStatus
 ATIValidMode
 (
-    SCRN_ARG_TYPE arg,
+    ScrnInfoPtr pScreenInfo,
     DisplayModePtr pMode,
     Bool Verbose,
     int flags
 )
 {
-    SCRN_INFO_PTR(arg);
     ATIPtr      pATI        = ATIPTR(pScreenInfo);
     int         HBlankWidth, HAdjust, VScan, VInterlace;
 
