@@ -523,7 +523,7 @@ ATIPreInit
 #ifndef AVOID_CPIO
 
     vbeInfoPtr       pVBE = NULL;
-    pointer          pVBEModule = NULL;
+    void *pVBEModule = NULL;
 
 #endif /* AVOID_CPIO */
 

@@ -83,8 +83,8 @@ ATIRefreshArea
         int w = (pBox->x2 - pBox->x1) * pATI->AdjustDepth;
         int h = pBox->y2 - pBox->y1;
         int offset = (pBox->y1 * pATI->FBPitch) + (pBox->x1 * pATI->AdjustDepth);
-        pointer pSrc = (char *)pATI->pShadow + offset;
-        pointer pDst = (char *)pATI->pMemory + offset;
+        void *pSrc = (char *)pATI->pShadow + offset;
+        void *pDst = (char *)pATI->pMemory + offset;
 
         while (h-- > 0)
         {
@@ -108,7 +108,7 @@ ATIScreenInit(ScreenPtr pScreen, int argc, char **argv)
 {
     ScrnInfoPtr  pScreenInfo = xf86ScreenToScrn(pScreen);
     ATIPtr       pATI        = ATIPTR(pScreenInfo);
-    pointer      pFB;
+    void        *pFB;
     int          VisualMask;
 
     /* Set video hardware state */

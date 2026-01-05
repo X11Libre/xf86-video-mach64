@@ -165,7 +165,7 @@ typedef struct _ATIHWRec
 #ifndef AVOID_CPIO
 
     /* This is used by ATISwap() */
-    pointer frame_buffer;
+    void *frame_buffer;
     ATIBankProcPtr SetBank;
     unsigned int nBank, nPlane;
 
@@ -279,8 +279,8 @@ typedef struct _ATIRec
     /*
      * Definitions related to video memory apertures.
      */
-    pointer pMemory, pShadow;
-    pointer pMemoryLE;          /* Always little-endian */
+    void *pMemory, *pShadow;
+    void *pMemoryLE;          /* Always little-endian */
     unsigned long LinearBase;
     int LinearSize, FBPitch, FBBytesPerPixel;
 
@@ -289,14 +289,14 @@ typedef struct _ATIRec
     /*
      * Banking interface.
      */
-    pointer pBank;
+    void *pBank;
 
 #endif /* AVOID_CPIO */
 
     /*
      * Definitions related to MMIO register apertures.
      */
-    pointer pMMIO, pBlock[2];
+    void *pMMIO, *pBlock[2];
     unsigned long Block0Base, Block1Base;
 
     /*
@@ -311,7 +311,7 @@ typedef struct _ATIRec
     CARD32 dst_cntl;    /* For SetupFor/Subsequent communication */
     CARD32 sc_left_right, sc_top_bottom;
     CARD16 sc_left, sc_right, sc_top, sc_bottom;        /* Current scissors */
-    pointer pHOST_DATA; /* Current HOST_DATA_* transfer window address */
+    void *pHOST_DATA; /* Current HOST_DATA_* transfer window address */
 #ifdef USE_EXA
     Bool RenderAccelEnabled;
     Mach64ContextRegs3D m3d;
@@ -321,7 +321,7 @@ typedef struct _ATIRec
      * Cursor-related definitions.
      */
     xf86CursorInfoPtr pCursorInfo;
-    pointer pCursorPage, pCursorImage;
+    void *pCursorPage, *pCursorImage;
     unsigned long CursorBase;
     CARD32 CursorOffset;
     CARD16 CursorXOffset, CursorYOffset;
@@ -385,7 +385,7 @@ typedef struct _ATIRec
      * XVideo-related data.
      */
     DevUnion XVPortPrivate[1];
-    pointer pXVBuffer;		/* USE_EXA: ExaOffscreenArea */
+    void *pXVBuffer; /* USE_EXA: ExaOffscreenArea */
     RegionRec VideoClip;
     int SurfacePitch, SurfaceOffset;
     CARD8 AutoPaint, DoubleBuffer, CurrentBuffer, ActiveSurface;
