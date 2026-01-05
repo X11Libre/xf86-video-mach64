@@ -31,14 +31,14 @@
  *
  * This function loads other modules required for a screen.
  */
-pointer
+void *
 ATILoadModules
 (
     ScrnInfoPtr pScreenInfo,
     ATIPtr      pATI
 )
 {
-    pointer fbPtr = NULL;
+    void *fbPtr = NULL;
 
     /* Load depth-specific entry points */
     switch (pATI->bitsPerPixel)

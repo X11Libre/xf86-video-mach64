@@ -46,11 +46,11 @@ static XF86ModuleVersionInfo ATIVersionRec =
  *
  * This function is called every time the module is loaded.
  */
-static pointer
+static void *
 ATISetup
 (
-    pointer Module,
-    pointer Options,
+    void    *Module,
+    void    *Options,
     int     *ErrorMajor,
     int     *ErrorMinor
 )
@@ -63,7 +63,7 @@ ATISetup
         xf86AddDriver(&MACH64, Module, HaveDriverFuncs);
     }
 
-    return (pointer)TRUE;
+    return (void*)TRUE;
 }
 
 /* The following record must be called mach64ModuleData */

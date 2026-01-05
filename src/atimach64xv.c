@@ -408,7 +408,7 @@ ATIMach64SetPortAttribute
     ScrnInfoPtr pScreenInfo,
     Atom        AttributeID,
     INT32       Value,
-    pointer     pATI
+    void       *pATI
 )
 {
     INT32 Range;
@@ -456,7 +456,7 @@ ATIMach64GetPortAttribute
     ScrnInfoPtr pScreenInfo,
     Atom        AttributeID,
     INT32       *Value,
-    pointer     pATI
+    void        *pATI
 )
 {
     INT32 Range;
@@ -489,11 +489,11 @@ ATIMach64GetPortAttribute
     return Success;
 }
 
-static pointer
+static void *
 ATIMach64XVMemAlloc
 (
     ScreenPtr pScreen,
-    pointer   pVideo,
+    void     *pVideo,
     int       size,
     int       *offset,
     ATIPtr    pATI
@@ -503,7 +503,7 @@ static void
 ATIMach64XVMemFree
 (
     ScreenPtr pScreen,
-    pointer   pVideo,
+    void     *pVideo,
     ATIPtr    pATI
 );
 
@@ -519,7 +519,7 @@ static void
 ATIMach64StopVideo
 (
     ScrnInfoPtr pScreenInfo,
-    pointer     Data,
+    void       *Data,
     Bool        Cleanup
 )
 {
@@ -560,7 +560,7 @@ ATIMach64QueryBestSize
     short        DrawableHeight,
     unsigned int *Width,
     unsigned int *Height,
-    pointer      pATI
+    void         *pATI
 )
 {
     *Width  = DrawableWidth;
@@ -924,7 +924,7 @@ ATIMach64PutImage
     short         Height,
     Bool          Synchronise,
     RegionPtr     pClip,
-    pointer       Data,
+    void         *Data,
     DrawablePtr   pDraw
 )
 {
@@ -1527,11 +1527,11 @@ ATICloseXVideo
 /* Functions for offscreen memory management */
 
 
-static pointer
+static void *
 ATIMach64XVMemAlloc
 (
     ScreenPtr pScreen,
-    pointer   pVideo,
+    void     *pVideo,
     int       size,
     int       *offset,
     ATIPtr    pATI
@@ -1567,7 +1567,7 @@ static void
 ATIMach64XVMemFree
 (
     ScreenPtr pScreen,
-    pointer   pVideo,
+    void     *pVideo,
     ATIPtr    pATI
 )
 {

@@ -27,6 +27,6 @@
 
 #include "xf86str.h"
 
-extern pointer ATILoadModules(ScrnInfoPtr, ATIPtr);
+extern void *ATILoadModules(ScrnInfoPtr, ATIPtr);
 
 #endif /* ___ATILOAD_H___ */

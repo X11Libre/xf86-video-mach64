@@ -54,9 +54,9 @@ ATICopyVGAMemory
 (
     ATIPtr   pATI,
     ATIHWPtr pATIHW,
-    pointer  *saveptr,
-    pointer  *from,
-    pointer  *to
+    void   **saveptr,
+    void   **from,
+    void   **to
 )
 {
     for (unsigned int iBank = 0;  iBank < pATIHW->nBank;  iBank++)
@@ -82,7 +82,7 @@ ATISwap
     Bool     ToFB
 )
 {
-    pointer save, *from, *to;
+    void *save, **from, **to;
     CARD8 seq2, seq4, gra1, gra3, gra4, gra5, gra6, gra8;
 
     /*
@@ -108,7 +108,7 @@ ATISwap
         if (!pATIHW->frame_buffer)
         {
             pATIHW->frame_buffer =
-                (pointer)malloc(pATIHW->nBank * pATIHW->nPlane * 0x00010000U);
+                malloc(pATIHW->nBank * pATIHW->nPlane * 0x00010000U);
             if (!pATIHW->frame_buffer)
             {
                 xf86DrvMsg(iScreen, X_WARNING,

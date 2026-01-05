@@ -128,7 +128,7 @@ ATIMach64LoadCursorImage
 )
 {
     ATIPtr           pATI     = ATIPTR(pScreenInfo);
-    CARD32          *pSrc     = (pointer)pImage;
+    CARD32          *pSrc     = (void*)pImage;
     volatile CARD32 *pDst     = pATI->pCursorImage;
 
 #ifdef XF86DRI_DEVEL
