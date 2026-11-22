@@ -748,9 +748,9 @@ Bool ATIDRIScreenInit( ScreenPtr pScreen )
         return FALSE;
       }
    }
-   pDRIInfo->ddxDriverMajorVersion = MACH64_VERSION_MAJOR;
-   pDRIInfo->ddxDriverMinorVersion = MACH64_VERSION_MINOR;
-   pDRIInfo->ddxDriverPatchVersion = MACH64_VERSION_PATCH;
+   pDRIInfo->ddxDriverMajorVersion = MACH64_DRI_VERSION_MAJOR;
+   pDRIInfo->ddxDriverMinorVersion = MACH64_DRI_VERSION_MINOR;
+   pDRIInfo->ddxDriverPatchVersion = MACH64_DRI_VERSION_PATCH;
    pDRIInfo->frameBufferPhysicalAddress = (void *)pATI->LinearBase;
    pDRIInfo->frameBufferSize = pATI->LinearSize;
    pDRIInfo->frameBufferStride = (pScreenInfo->displayWidth *
