@@ -68,64 +68,64 @@ static XF86AttributeRec ATIMach64Attribute[] =
     {
         XvSettable | XvGettable,
         -1000, 1000,
-        "XV_SATURATION"
+        (char *) "XV_SATURATION"
     },
     {
         XvSettable | XvGettable,
         -1000, 1000,
-        "XV_BRIGHTNESS"
+        (char *) "XV_BRIGHTNESS"
     },
     {
         XvSettable | XvGettable,
         -1000, 1000,
-        "XV_COLOUR"
+        (char *) "XV_COLOUR"
     },
     {
         XvSettable | XvGettable,
         -1000, 1000,
-        "XV_COLOR"
+        (char *) "XV_COLOR"
     },
 
     /* Local attributes, odds and ends for compatibility, etc... */
     {
         XvSettable | XvGettable,
         0, 1,
-        "XV_AUTOPAINT_COLOURKEY"
+        (char *) "XV_AUTOPAINT_COLOURKEY"
     },
     {
         XvSettable | XvGettable,
         0, 1,
-        "XV_AUTOPAINT_COLORKEY"
+        (char *) "XV_AUTOPAINT_COLORKEY"
     },
     {
         XvSettable | XvGettable,
         0, (1 << 24) - 1,
-        "XV_COLOURKEY"
+        (char *) "XV_COLOURKEY"
     },
     {
         XvSettable | XvGettable,
         0, (1 << 24) - 1,
-        "XV_COLORKEY"
+        (char *) "XV_COLORKEY"
     },
     {
         XvSettable | XvGettable,
         0, (1 << 24) - 1,
-        "XV_COLOURKEY_MASK"
+        (char *) "XV_COLOURKEY_MASK"
     },
     {
         XvSettable | XvGettable,
         0, (1 << 24) - 1,
-        "XV_COLORKEY_MASK"
+        (char *) "XV_COLORKEY_MASK"
     },
     {
         XvSettable,
         0, 0,
-        "XV_SET_DEFAULTS"
+        (char *) "XV_SET_DEFAULTS"
     },
     {   /* Keep last */
         XvSettable | XvGettable,
         0, 1,
-        "XV_DOUBLE_BUFFER"
+        (char *) "XV_DOUBLE_BUFFER"
     }
 };
 #define nATIMach64Attribute NumberOf(ATIMach64Attribute)

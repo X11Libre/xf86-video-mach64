@@ -774,7 +774,7 @@ FVAL(float f)
 
 #define VTX_OUT(_v, n)                    \
 do {                                      \
-    float w = 1.0;                        \
+    float vtx_w = 1.0;                    \
     CARD32 z = 0xffff << 15;              \
     CARD32 x_y = ((CARD16)_v.x << 16) |   \
                  ((CARD16)_v.y & 0xffff); \
@@ -782,7 +782,7 @@ do {                                      \
     ATIMach64WaitForFIFO(pATI, 6);        \
     outf(VERTEX_##n##_S, FVAL(_v.s0));    \
     outf(VERTEX_##n##_T, FVAL(_v.t0));    \
-    outf(VERTEX_##n##_W, FVAL(w));        \
+    outf(VERTEX_##n##_W, FVAL(vtx_w));    \
                                           \
     outf(VERTEX_##n##_Z, z);              \
     outf(VERTEX_##n##_ARGB, _v.argb);     \
